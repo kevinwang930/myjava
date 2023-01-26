@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/littleJava/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/littleJava/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myModule/baseModule/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myModule/baseModule/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myModule/loadModule/src/main/java" charset="UTF-8" />

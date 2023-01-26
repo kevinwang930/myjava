@@ -11,6 +11,7 @@
         <module name="loadModule" />
         <module name="baseModule" />
         <module name="myPowerMock" />
+        <module name="littleJava" />
         <module name="myTest" />
       </profile>
     </annotationProcessing>
