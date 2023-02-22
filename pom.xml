@@ -14,15 +14,17 @@
         <module>syntax</module>
         <module>myModule</module>
         <module>littleJava</module>
+        <module>mySpring</module>
+        <module>myFP</module>
+        <module>algorithm</module>
+        <module>myLog</module>
+        <module>myNet</module>
     </modules>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-    <dependencyManagement>
-        <dependencies>
-        </dependencies>
-    </dependencyManagement>
+
     <dependencies>
 
         <dependency>
@@ -38,6 +40,15 @@
             <version>4.10.0</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
+
+
 
     </dependencies>
 </project>

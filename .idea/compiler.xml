@@ -7,12 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="syntax" />
-        <module name="loadModule" />
+        <module name="myLog" />
         <module name="baseModule" />
+        <module name="myFP" />
         <module name="myPowerMock" />
+        <module name="syntax" />
+        <module name="myNet" />
+        <module name="loadModule" />
+        <module name="mySpring" />
         <module name="littleJava" />
         <module name="myTest" />
+        <module name="algorithm" />
       </profile>
     </annotationProcessing>
   </component>
