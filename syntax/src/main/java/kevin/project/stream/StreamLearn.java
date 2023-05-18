@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class StreamLearn {
     private List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5);
@@ -31,6 +32,20 @@ public class StreamLearn {
 //        FileOutputStream fileOutputStream = new FileOutputStream("output.txt");
 
 //        fileOutputStream.write();
+    }
+
+    public void scannerLearn() {
+        InputStream in = this.getClass().getResourceAsStream("/test.txt");
+        Scanner scanner = new Scanner(in);
+        while (scanner.hasNext()) {
+            System.out.println(scanner.next());
+        }
+    }
+
+    public void bufferedReaderLearn() {
+        InputStream in = this.getClass().getResourceAsStream("/test.txt");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+        bufferedReader.lines().forEach(System.out::println);
     }
 
     public static void main(String[] args) throws IOException {

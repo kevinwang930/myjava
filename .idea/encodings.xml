@@ -3,6 +3,26 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/algorithm/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/algorithm/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/calcite/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/calcite/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/jetty/jettyclient/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/jetty/jettyclient/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/jetty/jettyserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/jetty/jettyserver/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/jetty/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/jetty/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/myAvatica/client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/myAvatica/client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/myAvatica/server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/myAvatica/server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/myAvatica/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/myAvatica/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/mySpring/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/mySpring/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/mybatis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/mybatis/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/littleJava/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/littleJava/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myFP/src/main/java" charset="UTF-8" />
@@ -17,12 +37,18 @@
     <file url="file://$PROJECT_DIR$/myModule/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myNet/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myNet/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/myPowerMock/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/myPowerMock/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mySpring/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mySpring/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myTest/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/myTest/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mytest/MyMockito/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mytest/MyMockito/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mytest/myPowerMock/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mytest/myPowerMock/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mytest/testcommon/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mytest/testcommon/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/parser/javacc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/parser/javacc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/parser/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/parser/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/syntax/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/syntax/src/main/resources" charset="UTF-8" />
   </component>

@@ -1,0 +1,17 @@
+{
+    "defaultSchema": "employees",
+    "schemas": [
+        {
+            "factory": "org.apache.calcite.adapter.jdbc.JdbcSchema$Factory",
+            "name": "employees",
+            "operand": {
+                "jdbcDriver": "org.mariadb.jdbc.Driver",
+                "jdbcPassword": "123456",
+                "jdbcUrl": "jdbc:mariadb://localhost:3306/employees",
+                "jdbcUser": "root"
+            },
+            "type": "custom"
+        }
+    ],
+    "version": "1.0"
+}

@@ -8,17 +8,31 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="myLog" />
+        <module name="server" />
         <module name="baseModule" />
         <module name="myFP" />
         <module name="myPowerMock" />
-        <module name="syntax" />
+        <module name="mybatis" />
         <module name="myNet" />
+        <module name="calcite" />
         <module name="loadModule" />
+        <module name="jettyserver" />
         <module name="mySpring" />
+        <module name="javacc" />
+        <module name="jettyclient" />
+        <module name="common" />
+        <module name="syntax" />
+        <module name="client" />
+        <module name="jetty" />
+        <module name="MyMockito" />
+        <module name="testcommon" />
         <module name="littleJava" />
-        <module name="myTest" />
         <module name="algorithm" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="myTest" target="11" />
+      <module name="parser" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

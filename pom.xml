@@ -9,16 +9,26 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>myTest</module>
-        <module>myPowerMock</module>
+
         <module>syntax</module>
         <module>myModule</module>
         <module>littleJava</module>
-        <module>mySpring</module>
+        <module>library/mySpring</module>
         <module>myFP</module>
         <module>algorithm</module>
         <module>myLog</module>
         <module>myNet</module>
+        <module>library/myAvatica</module>
+        <module>parser/javacc</module>
+        <module>library/calcite</module>
+        <module>mytest/testcommon</module>
+        <module>mytest/MyMockito</module>
+        <module>mytest/myPowerMock</module>
+        <module>library/jetty</module>
+        <module>library/jetty/jettyserver</module>
+        <module>library/jetty/jettyclient</module>
+        <module>common</module>
+        <module>library/mybatis</module>
     </modules>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -33,18 +43,18 @@
             <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-inline</artifactId>
-            <version>4.10.0</version>
-            <scope>test</scope>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>2.20.0</version>
+
         </dependency>
 
 

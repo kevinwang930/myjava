@@ -17,5 +17,6 @@ public class ThreadLearn {
     public static void main(String[] args) throws InterruptedException {
         ThreadLearn threadLearn = new ThreadLearn();
         threadLearn.singleThreadLearn();
+        System.out.println("main finished");
     }
 }
