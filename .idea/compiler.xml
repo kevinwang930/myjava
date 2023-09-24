@@ -9,25 +9,30 @@
         <outputRelativeToContentRoot value="true" />
         <module name="myLog" />
         <module name="server" />
-        <module name="baseModule" />
         <module name="myFP" />
         <module name="myPowerMock" />
         <module name="mybatis" />
-        <module name="myNet" />
         <module name="calcite" />
-        <module name="loadModule" />
-        <module name="jettyserver" />
-        <module name="mySpring" />
-        <module name="javacc" />
-        <module name="jettyclient" />
+        <module name="h2" />
+        <module name="ssl" />
+        <module name="liquibase" />
         <module name="common" />
-        <module name="syntax" />
+        <module name="xml" />
         <module name="client" />
         <module name="jetty" />
-        <module name="MyMockito" />
-        <module name="testcommon" />
         <module name="littleJava" />
         <module name="algorithm" />
+        <module name="baseModule" />
+        <module name="myNet" />
+        <module name="jettyserver" />
+        <module name="loadModule" />
+        <module name="mySpring" />
+        <module name="javacc" />
+        <module name="grpc" />
+        <module name="jettyclient" />
+        <module name="syntax" />
+        <module name="MyMockito" />
+        <module name="testcommon" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

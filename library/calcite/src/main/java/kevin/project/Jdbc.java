@@ -15,8 +15,10 @@ public class Jdbc {
             // use connection
             System.out.println(connection.getCatalog());
             System.out.println(connection.getSchema());
+            connection.setSchema("blog_db");
+            System.out.println(connection.getSchema());
             Statement statement = connection.createStatement();
-            statement.executeQuery("select count(*) from employees");
+            statement.executeQuery("select count(*) from blog");
             while (statement.getResultSet().next()) {
                 System.out.println(statement.getResultSet().getString(1));
             }

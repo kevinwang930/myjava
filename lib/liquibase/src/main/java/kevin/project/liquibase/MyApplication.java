@@ -1,25 +1,14 @@
-package kevin.project;
+package kevin.project.liquibase;
 
-import kevin.project.service.MyFirstBean;
-import kevin.project.service.MyService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 
 
+@SpringBootApplication
+@ImportResource("classpath:service.xml")
 public class MyApplication {
-
-
-    public static void testBeanProperty(ApplicationContext context) {
-        MyFirstBean bean = context.getBean(MyFirstBean.class);
-        System.out.println(bean.getNumber1());
-//        MyBean bean = context.getBean(MyBean.class);
-    }
-
-
-    public static void main(String[] args) throws InterruptedException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("service.xml");
-        MyService myService = context.getBean(MyService.class);
-        myService.testMybatis();
-        testBeanProperty(context);
+    public static void main(String[] args) {
+        SpringApplication.run(MyApplication.class, args);
     }
 }

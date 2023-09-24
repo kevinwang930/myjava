@@ -3,7 +3,7 @@ package kevin.project.service;
 import lombok.Getter;
 import lombok.Setter;
 
-public class MyBean {
+public class MyFirstBean {
 
     @Setter
     @Getter

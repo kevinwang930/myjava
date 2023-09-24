@@ -1,2 +1,5 @@
-package kevin.project;public class h2Test {
+package kevin.project;
+
+public class h2Test {
+
 }

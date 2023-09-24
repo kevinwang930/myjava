@@ -1,2 +1,4 @@
-package kevin.project.algorithm;public class graph {
+package kevin.project.algorithm;
+
+public class graph {
 }
