@@ -38,7 +38,7 @@
         <module>library/grpc</module>
         <module>myModule/ssl</module>
         <module>library/h2</module>
-        <module>lib/liquibase</module>
+        <module>library/liquibase</module>
         <module>library/xml</module>
     </modules>
     <properties>
