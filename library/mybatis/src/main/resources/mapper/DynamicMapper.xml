@@ -12,5 +12,13 @@
     <insert id="executeInsert" >
         <include refid="dynamicSqlProvider"/>
     </insert>
+    
+    <select id="selectBlog" resultType="hashmap">
+        select * from blog_db.user limit 1
+    </select>
+
+    <select id="selectBlogUser" resultType="kevin.project.User">
+        select * from blog_db.user
+    </select>
 
 </mapper>

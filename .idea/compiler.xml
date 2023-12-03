@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="myLog" />
         <module name="server" />
+        <module name="fastjson" />
         <module name="myFP" />
         <module name="myPowerMock" />
         <module name="mybatis" />
@@ -16,10 +17,12 @@
         <module name="h2" />
         <module name="ssl" />
         <module name="liquibase" />
+        <module name="swagger" />
         <module name="common" />
         <module name="xml" />
         <module name="client" />
         <module name="jetty" />
+        <module name="hadoop" />
         <module name="littleJava" />
         <module name="algorithm" />
         <module name="baseModule" />
@@ -31,11 +34,13 @@
         <module name="grpc" />
         <module name="jettyclient" />
         <module name="syntax" />
+        <module name="http" />
         <module name="MyMockito" />
         <module name="testcommon" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="myJava" target="11" />
       <module name="myTest" target="11" />
       <module name="parser" target="11" />
     </bytecodeTargetLevel>

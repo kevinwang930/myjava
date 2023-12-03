@@ -10,8 +10,16 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <groupId>kevin.learn</groupId>
-    <artifactId>ssl</artifactId>
+    <groupId>kevin.project.hadoop</groupId>
+    <artifactId>hadoop</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>3.3.6</version>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

@@ -40,6 +40,11 @@
         <module>library/h2</module>
         <module>library/liquibase</module>
         <module>library/xml</module>
+        <module>library/fastjson</module>
+        <module>lib/http</module>
+        <module>lib/hadoop</module>
+        <module>library/mySpring/swagger</module>
+        <module>strategy</module>
     </modules>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
