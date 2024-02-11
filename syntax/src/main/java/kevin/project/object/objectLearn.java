@@ -14,6 +14,7 @@ class People {
 
 class Animal {
     private String name;
+
     public void shout() {
         System.out.println("animal shout");
     }
@@ -33,6 +34,7 @@ class Duck extends Animal {
         System.out.println("duck shout");
     }
 }
+
 public class objectLearn {
     public void print(Object obj) {
         System.out.println(obj.toString());
@@ -49,9 +51,24 @@ public class objectLearn {
 
     }
 
+    public void equalsLearn() {
+        int a = 1;
+        int b = 1;
+        System.out.println(a == b);
+        Integer a1 = 1;
+        Integer b1 = 1;
+        System.out.println(a1 == b1);
+        System.out.println(a1.equals(b1));
+        String s1 = "abcd";
+        String s2 = "abcd";
+        System.out.println(s1 == s2);
+        System.out.println(s1.equals(s2));
+    }
+
     public static void main(String[] args) {
         objectLearn objectLearn = new objectLearn();
         objectLearn.print(new People());
         objectLearn.classLearn();
+        objectLearn.equalsLearn();
     }
 }

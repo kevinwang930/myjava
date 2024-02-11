@@ -1,12 +1,12 @@
 package kevin.project;
 
+import jakarta.servlet.*;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.boot.web.embedded.tomcat.TomcatWebServer;
 import org.springframework.boot.web.server.WebServer;
 
-import javax.servlet.Servlet;
-import javax.servlet.ServletException;
+
 import java.io.File;
 
 public class MyWebServer {
@@ -26,16 +26,16 @@ public class MyWebServer {
 
     private static class MyServlet implements Servlet {
         @Override
-        public void init(javax.servlet.ServletConfig config) throws ServletException {
+        public void init(ServletConfig config) throws ServletException {
         }
 
         @Override
-        public javax.servlet.ServletConfig getServletConfig() {
+        public ServletConfig getServletConfig() {
             return null;
         }
 
         @Override
-        public void service(javax.servlet.ServletRequest req, javax.servlet.ServletResponse res) throws ServletException, java.io.IOException {
+        public void service(ServletRequest req, ServletResponse res) throws ServletException, java.io.IOException {
             res.getWriter().println("Hello, World!");
         }
 

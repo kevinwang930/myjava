@@ -12,7 +12,7 @@ public class ThreadLearn {
             System.out.println("inside thread");
         });
         t1.start();
-//        t1.join();
+        t1.join();
     }
     public static void main(String[] args) throws InterruptedException {
         ThreadLearn threadLearn = new ThreadLearn();

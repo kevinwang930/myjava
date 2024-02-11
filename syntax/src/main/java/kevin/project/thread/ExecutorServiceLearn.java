@@ -43,8 +43,10 @@ public class ExecutorServiceLearn {
 
     public void stop() throws InterruptedException {
         executorService.shutdown();
-//        executorService.awaitTermination(3,TimeUnit.SECONDS);
+        executorService.awaitTermination(3,TimeUnit.SECONDS);
     }
+
+
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorServiceLearn executorServiceLearn = new ExecutorServiceLearn();
