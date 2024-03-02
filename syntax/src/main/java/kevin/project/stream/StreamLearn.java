@@ -19,7 +19,7 @@ public class StreamLearn {
         InputStream in = this.getClass().getResourceAsStream("/test.txt");
         Path target = Paths.get("output.txt");
         OutputStream out = Files.newOutputStream(target, StandardOpenOption.TRUNCATE_EXISTING);
-//        Files.copy(in,target, StandardCopyOption.REPLACE_EXISTING);
+        //        Files.copy(in,target, StandardCopyOption.REPLACE_EXISTING);
         IOUtils.copy(in, out);
     }
 

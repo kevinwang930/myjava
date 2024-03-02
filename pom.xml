@@ -45,6 +45,7 @@
         <module>lib/hadoop</module>
         <module>library/mySpring/swagger</module>
         <module>strategy</module>
+        <module>library/kafka</module>
     </modules>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

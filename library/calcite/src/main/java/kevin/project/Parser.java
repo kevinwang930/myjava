@@ -24,7 +24,6 @@ public class Parser {
         SqlDialect dialect = new CustomUnicodeSqlDialect(SqlDialect.DatabaseProduct.UNKNOWN, "CustomUnicode", "\"");
         try {
             SqlInsert sqlInsert = (SqlInsert) parser.parseStmt();
-            System.out.println(parser.);
             System.out.println(sqlInsert.toSqlString(dialect));
         } catch (SqlParseException e) {
             e.printStackTrace();
