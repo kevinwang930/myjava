@@ -13,8 +13,7 @@
     <artifactId>mySpring</artifactId>
 
     <properties>
-
-        <springboot.version>3.2.2</springboot.version>
+        <springboot.version>3.2.3</springboot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -69,14 +68,13 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.3.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
-            <version>3.1.2</version>
+            <version>3.3.3</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
