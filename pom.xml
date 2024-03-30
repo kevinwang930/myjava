@@ -40,6 +40,8 @@
         <module>lib/hadoop</module>
         <module>strategy</module>
         <module>library/kafka</module>
+        <module>library/cglibLearn</module>
+        <module>library/bytebuddyLearn</module>
     </modules>
     <properties>
         <java.version>21</java.version>
