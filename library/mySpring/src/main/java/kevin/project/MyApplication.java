@@ -19,7 +19,7 @@ public class MyApplication {
     public static void main(String[] args) throws InterruptedException {
         ApplicationContext context = new ClassPathXmlApplicationContext("service.xml");
         MyService myService = context.getBean(MyService.class);
-        myService.testMybatis();
+        myService.test();
         testBeanProperty(context);
     }
 }

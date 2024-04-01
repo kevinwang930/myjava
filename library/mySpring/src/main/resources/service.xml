@@ -9,12 +9,12 @@
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<!--    <context:component-scan base-package="kevin.project"/>-->
+    <context:component-scan base-package="kevin.project.service"/>
 <!--    <task:annotation-driven/>-->
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/blog_db"/>
         <property name="username" value="root"/>
         <property name="password" value="123456"/>

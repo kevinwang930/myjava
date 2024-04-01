@@ -2,11 +2,15 @@ package kevin.project.service;
 
 import kevin.project.bean.User;
 import kevin.project.mapper.UserMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MyService {
+
+    private final Logger logger = LogManager.getLogger();
 
     private final UserMapper userMapper;
 
@@ -15,7 +19,7 @@ public class MyService {
     }
 
     public void test() {
-        System.out.println("this is a service");
+        logger.info("this is a service");
     }
 
 //    @Scheduled(fixedRate = 2000)
@@ -24,7 +28,7 @@ public class MyService {
 //        System.out.println("Scheduled task executed ");
 //    }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void testMybatis() {
 
         // Use the mapper to execute database operations

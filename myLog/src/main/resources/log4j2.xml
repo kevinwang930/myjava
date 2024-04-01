@@ -11,13 +11,13 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="debug">
-            <AppenderRef ref="ConsoleAppender" />
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender"/>
         </Root>
-        <logger name="first" level="info">
-            <AppenderRef ref="MyFile"/>
-        </logger>
-        <logger name = "kevin.project.Log4jLearn" level="info">
+        <!--        <logger name="first" level="info">-->
+        <!--            <AppenderRef ref="MyFile"/>-->
+        <!--        </logger>-->
+        <logger name="kevin.project.Log4jLearn" level="debug" additivity="false">
             <AppenderRef ref="MyFile"/>
         </logger>
     </Loggers>

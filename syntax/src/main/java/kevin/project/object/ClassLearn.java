@@ -15,10 +15,18 @@ public class ClassLearn {
         innerClass.showOuter();
     }
 
+    public void instanceLearn() {
+        Integer a = 3;
+        if (a instanceof Object obj) {
+            System.out.println(obj);
+        }
+    }
+
     public static void main(String[] args) {
         ClassLearn classLearn = new ClassLearn();
         classLearn.classTypeLearn();
         classLearn.testInnerClass();
+        classLearn.instanceLearn();
     }
 
 
