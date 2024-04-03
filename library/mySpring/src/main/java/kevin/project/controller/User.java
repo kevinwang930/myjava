@@ -1,31 +1,23 @@
 package kevin.project.controller;
 
 import kevin.project.model.Person;
-import kevin.project.service.MyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
-public class MyController {
+public class User {
 
 
-    @Autowired
-    MyService myService;
-    @GetMapping("/mybatis")
-    public void testMybatis() {
-        myService.testMybatis();
-    }
 
-
-    @GetMapping("/")
+    @GetMapping("/user")
     @ResponseBody
-    public Person hello() {
+    public Person user(Principal principal) {
         Person person = new Person();
-        person.name = "kevin";
+        person.name = principal.getName();
         person.age = 23;
         return person;
     }
 }
-

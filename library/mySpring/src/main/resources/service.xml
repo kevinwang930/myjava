@@ -9,8 +9,8 @@
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="kevin.project.service"/>
 <!--    <task:annotation-driven/>-->
+    <context:component-scan base-package="kevin.project.service"/>
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
