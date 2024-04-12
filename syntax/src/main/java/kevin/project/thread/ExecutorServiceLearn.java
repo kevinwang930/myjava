@@ -51,7 +51,7 @@ public class ExecutorServiceLearn {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorServiceLearn executorServiceLearn = new ExecutorServiceLearn();
         executorServiceLearn.singleFutureLearn();
-        executorServiceLearn.multiFutureLearn();
+//        executorServiceLearn.multiFutureLearn();
         executorServiceLearn.stop();
     }
 }
