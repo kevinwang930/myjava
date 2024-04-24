@@ -10,29 +10,20 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>mybatis</artifactId>
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.5.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>3.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-            <version>1.4.2</version>
-        </dependency>
+    <artifactId>ffmpegwrapper</artifactId>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/net.bramp.ffmpeg/ffmpeg -->
+        <dependency>
+            <groupId>net.bramp.ffmpeg</groupId>
+            <artifactId>ffmpeg</artifactId>
+            <version>0.8.0</version>
+        </dependency>
     </dependencies>
 
     <properties>
-
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TimeLearn {
 
@@ -27,14 +28,22 @@ public class TimeLearn {
         System.out.println(zonedDateTime);
         LocalDateTime localDateTime = LocalDateTime.now();
         System.out.println(localDateTime);
+    }
 
+    public void timeStampLearn() {
+        System.out.println(System.currentTimeMillis());
+    }
 
-
+    public void dataTimeLearn() {
+        Date date = new Date();
+        System.out.println(date);
     }
 
     public static void main(String[] args) {
         TimeLearn timeLearn = new TimeLearn();
         timeLearn.calenderLearn();
         timeLearn.instantLearn();
+        timeLearn.timeStampLearn();
+        timeLearn.dataTimeLearn();
     }
 }

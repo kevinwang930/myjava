@@ -43,6 +43,7 @@
         <module>library/cglibLearn</module>
         <module>library/bytebuddyLearn</module>
         <module>library/shiro</module>
+        <module>library/ffmpegwrapper</module>
     </modules>
     <properties>
         <java.version>21</java.version>
