@@ -10,21 +10,22 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>ffmpegwrapper</artifactId>
-
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/net.bramp.ffmpeg/ffmpeg -->
-        <dependency>
-            <groupId>net.bramp.ffmpeg</groupId>
-            <artifactId>ffmpeg</artifactId>
-            <version>0.8.0</version>
-        </dependency>
-    </dependencies>
+    <artifactId>hutool</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.27</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
