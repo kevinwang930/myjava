@@ -43,6 +43,4 @@ public class FfmpegLearn {
             System.out.println(e);
         }
     }
-
-
 }

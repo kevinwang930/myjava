@@ -12,7 +12,7 @@ public class ListLearn {
 
     public static void main(String[] args) {
         List<String> list = List.of("test","WANG");
-
+        System.out.println(list);
     }
 
 
