@@ -47,6 +47,7 @@
         <module>library/springcloud</module>
         <module>library/hutool</module>
         <module>library/okhttp</module>
+        <module>library/reactor</module>
     </modules>
     <properties>
         <java.version>21</java.version>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 
 public class UrlLearn {
     public void urlConnectionLearn() throws IOException {
@@ -29,8 +30,15 @@ public class UrlLearn {
         connection.disconnect();
     }
 
+    public void decoderLearn() throws IOException {
+        String decode = URLDecoder.decode("视频%20", "UTF-8");
+        System.out.println(decode);
+        System.out.println(decode.length());
+    }
+
     public static void main(String[] args) throws IOException {
         UrlLearn urlLearn = new UrlLearn();
-        urlLearn.urlConnectionLearn();
+//        urlLearn.urlConnectionLearn();
+        urlLearn.decoderLearn();
     }
 }
