@@ -3,9 +3,7 @@ package kevin.project.url;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLDecoder;
+import java.net.*;
 
 public class UrlLearn {
     public void urlConnectionLearn() throws IOException {
@@ -36,9 +34,18 @@ public class UrlLearn {
         System.out.println(decode.length());
     }
 
-    public static void main(String[] args) throws IOException {
+    public void urlPathLearn() throws IOException, URISyntaxException {
+        URL url = new URL("https://example.com/path/resource?query=123");
+        URI uri = new URI(url.getProtocol(),  "kevin.net", url.getPath(), url.getQuery(),null);
+        System.out.println(uri.toURL());
+
+    }
+
+    public static void main(String[] args) throws IOException, URISyntaxException {
         UrlLearn urlLearn = new UrlLearn();
 //        urlLearn.urlConnectionLearn();
         urlLearn.decoderLearn();
+        urlLearn.urlPathLearn();
+
     }
 }
