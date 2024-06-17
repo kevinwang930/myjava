@@ -1,5 +1,6 @@
 package kevin.project.controller;
 
+import kevin.project.bean.User;
 import kevin.project.model.Person;
 import kevin.project.service.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class MyController {
     @Autowired
     MyService myService;
     @GetMapping("/mybatis")
-    public void testMybatis() {
-        myService.testMybatis();
+    public User testMybatis() {
+        return myService.testMybatis();
     }
 
 

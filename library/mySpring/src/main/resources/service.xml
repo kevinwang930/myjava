@@ -10,14 +10,15 @@
         http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 <!--    <task:annotation-driven/>-->
-    <context:component-scan base-package="kevin.project.service"/>
+    <context:component-scan base-package="kevin.project.service,kevin.project.controller"/>
 
     <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+          class="com.zaxxer.hikari.HikariDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/blog_db"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/blog_db"/>
         <property name="username" value="root"/>
         <property name="password" value="123456"/>
+        <property name="maximumPoolSize" value="200"/>
     </bean>
 
     <bean id="myBean" class="kevin.project.service.MyFirstBean">

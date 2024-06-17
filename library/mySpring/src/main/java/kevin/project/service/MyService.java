@@ -29,11 +29,11 @@ public class MyService {
 //    }
 
     @Transactional(rollbackFor = Exception.class)
-    public void testMybatis() {
+    public User testMybatis() {
 
         // Use the mapper to execute database operations
         User user = userMapper.findById(1L);
-        System.out.println(user);
+        return user;
 
         // Other database operations
     }

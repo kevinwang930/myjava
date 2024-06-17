@@ -48,6 +48,8 @@
         <module>library/hutool</module>
         <module>library/okhttp</module>
         <module>library/reactor</module>
+        <module>library/openapi-8</module>
+        <module>library/springdoc-8</module>
     </modules>
     <properties>
         <java.version>21</java.version>
