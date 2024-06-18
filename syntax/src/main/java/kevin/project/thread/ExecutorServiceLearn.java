@@ -46,12 +46,30 @@ public class ExecutorServiceLearn {
         executorService.awaitTermination(3,TimeUnit.SECONDS);
     }
 
+    public void exceptionLearn() {
+        Callable<String> exception = new Callable<>() {
+            @Override
+            public String call() throws Exception {
+                throw new RuntimeException("exception");
+            }
+        };
+        Future<String> exF = executorService.submit(exception);
+        try {
+            String s = exF.get();
+        } catch (ExecutionException e) {
+            System.out.println(e.getCause());
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+
 
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorServiceLearn executorServiceLearn = new ExecutorServiceLearn();
         executorServiceLearn.singleFutureLearn();
 //        executorServiceLearn.multiFutureLearn();
+        executorServiceLearn.exceptionLearn();
         executorServiceLearn.stop();
     }
 }

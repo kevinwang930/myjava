@@ -4,11 +4,15 @@ import kevin.project.bean.User;
 import kevin.project.mapper.UserMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@ConfigurationProperties(prefix = "config")
 public class MyService {
+
+    private String test;
 
     private final Logger logger = LogManager.getLogger();
 
@@ -19,7 +23,7 @@ public class MyService {
     }
 
     public void test() {
-        logger.info("this is a service");
+        logger.info(test);
     }
 
 //    @Scheduled(fixedRate = 2000)
