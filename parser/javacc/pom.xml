@@ -31,8 +31,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <sourceDirectory>src/main/codegen/templates</sourceDirectory>
-                    <outputDirectory>src/main/java</outputDirectory>
+                    <sourceDirectory>src/fastJsonLearn/codegen/templates</sourceDirectory>
+                    <outputDirectory>src/fastJsonLearn/java</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>

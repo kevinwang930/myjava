@@ -105,7 +105,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/swagger.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/src/fastJsonLearn/resources/swagger.yaml</inputSpec>
                             <output>${project.basedir}</output>
                             <apiPackage>kevin.project.swagger.api</apiPackage>
                             <modelPackage>kevin.project.swagger.model</modelPackage>

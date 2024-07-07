@@ -51,6 +51,8 @@
         <module>library/minio</module>
         <module>library/openapi-8</module>
         <module>library/springdoc-8</module>
+        <module>library/pinyin4j</module>
+        <module>library/redis</module>
     </modules>
     <properties>
         <java.version>21</java.version>
@@ -90,7 +92,6 @@
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-slf4j2-impl</artifactId>
                 <version>2.23.1</version>
-                <scope>test</scope>
             </dependency>
 
 

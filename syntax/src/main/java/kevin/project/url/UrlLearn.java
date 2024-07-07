@@ -41,11 +41,23 @@ public class UrlLearn {
 
     }
 
+    public void paramLearn() throws MalformedURLException {
+        URL url = new URL("baidu.com?a=b");
+        System.out.println(url.getQuery());
+
+    }
+
+    public void contentTypeLearn() throws IOException, URISyntaxException {
+        System.out.println(URLConnection.getFileNameMap().getContentTypeFor("file.mp4"));
+        System.out.println(URLConnection.getFileNameMap().getContentTypeFor("sample_20.mp4"));
+    }
+
     public static void main(String[] args) throws IOException, URISyntaxException {
         UrlLearn urlLearn = new UrlLearn();
 //        urlLearn.urlConnectionLearn();
         urlLearn.decoderLearn();
         urlLearn.urlPathLearn();
-
+        urlLearn.contentTypeLearn();
+        urlLearn.paramLearn();
     }
 }

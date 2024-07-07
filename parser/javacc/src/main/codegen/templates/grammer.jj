@@ -4,7 +4,7 @@ PARSER_BEGIN(Example)
 public class Example {
 
   /** Main entry point. */
-  public static void main(String args[]) throws ParseException {
+  public static void fastJsonLearn(String args[]) throws ParseException {
     Example parser = new Example(System.in);
     parser.Input();
   }
