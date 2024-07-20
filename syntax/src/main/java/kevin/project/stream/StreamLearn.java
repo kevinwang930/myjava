@@ -10,7 +10,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamLearn {
     private List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5);
@@ -50,7 +53,42 @@ public class StreamLearn {
 
     public static void main(String[] args) throws IOException {
         StreamLearn streamLearn = new StreamLearn();
-        streamLearn.inputOutputLearn();
-        streamLearn.fileInputOutputLearn();
+//        streamLearn.inputOutputLearn();
+//        streamLearn.fileInputOutputLearn();
+//        streamLearn.streamLearn();
+        streamLearn.streamExceptionLearn();
+    }
+
+    public void streamExceptionLearn() throws IOException {
+        Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5);
+        Stream<Integer> parallel = integerStream
+                .parallel();
+        Stream<Integer> integerStream1 = parallel.map(num -> {
+            if (num == 3) {
+                throw new RuntimeException("runtime exception");
+            }
+            return num;
+        });
+        List<Integer> list = integerStream1.collect(Collectors.toList());
+        System.out.println(list);
+    }
+
+    public void streamLearn() {
+        List<Integer> numList = Stream.of(1, 2, 3, 4, 5)
+                .parallel().
+                map(number -> {
+                    try {
+
+                        int i = new Random().nextInt(20);
+                        System.out.println("start sleep " + i);
+                        Thread.sleep(i * 1000);
+                        System.out.println("finish sleep");
+                        return number;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return number;
+                    }
+                }).collect(Collectors.toList());
+        System.out.println(numList);
     }
 }

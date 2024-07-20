@@ -38,6 +38,9 @@ public class UrlLearn {
         URL url = new URL("https://example.com/path/resource?query=123");
         URI uri = new URI(url.getProtocol(),  "kevin.net", url.getPath(), url.getQuery(),null);
         System.out.println(uri.toURL());
+    }
+
+    public void urlConcatLearn() {
 
     }
 
