@@ -30,13 +30,19 @@ public class StringLearn {
 
         byte[] bytes = Base64.getDecoder().decode(base64);
         String hex = HexFormat.of().formatHex(bytes);
-        int len = hex.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4)
-                    + Character.digit(hex.charAt(i+1), 16));
+        System.out.println(hex);
+    }
+
+    public static String bytesToHex(byte[] bytes) {
+        StringBuilder hexString = new StringBuilder(2 * bytes.length);
+        for (byte b : bytes) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
         }
-        System.out.println(Base64.getEncoder().encodeToString(data));
+        return hexString.toString().toUpperCase(); // Convert to upper-case for consistency
     }
 
     public static void main(String[] args) {
@@ -44,5 +50,7 @@ public class StringLearn {
         base64Learn();
         hexToBase64("420f8a835bb48ebeb845b0a26c5aa608");
         hexToBase64("e0062ad0842b6a43a79d02cdd156d589");
+        base64ToHex("r/Qrql47hG4znwkeqW53ww==");
+        base64ToHex("AAAAAAAAAAAAAAAAAAAAAA==");
     }
 }

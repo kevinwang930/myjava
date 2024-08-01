@@ -1,5 +1,7 @@
 package kevin.project.url;
 
+import org.apache.hc.core5.net.URIBuilder;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,12 +42,13 @@ public class UrlLearn {
         System.out.println(uri.toURL());
     }
 
-    public void urlConcatLearn() {
-
+    public void urlConcatLearn() throws URISyntaxException {
+        URI baseURI = new URIBuilder().setScheme("http").setHost("baidu.com").setPort(80).setPath("/p1/p2").build();
+        System.out.println(baseURI.toString());
     }
 
     public void paramLearn() throws MalformedURLException {
-        URL url = new URL("baidu.com?a=b");
+        URL url = new URL("https://baidu.com?a=b");
         System.out.println(url.getQuery());
 
     }
@@ -62,5 +65,6 @@ public class UrlLearn {
         urlLearn.urlPathLearn();
         urlLearn.contentTypeLearn();
         urlLearn.paramLearn();
+        urlLearn.urlConcatLearn();
     }
 }

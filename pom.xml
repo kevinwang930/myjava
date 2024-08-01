@@ -54,6 +54,7 @@
         <module>library/pinyin4j</module>
         <module>library/redis</module>
         <module>library/encryption</module>
+        <module>library/socket</module>
     </modules>
     <properties>
         <java.version>21</java.version>

@@ -4,6 +4,7 @@ import kevin.project.bean.User;
 import kevin.project.model.Person;
 import kevin.project.service.ClientPushService;
 import kevin.project.service.MyService;
+import kevin.project.service.StreamService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class MyController {
     @Autowired
     private ClientPushService clientPushService;
 
+    @Autowired
+    private StreamService streamService;
+
     private ExecutorService service = new ScheduledThreadPoolExecutor(1) ;
 
     @GetMapping("/mybatis")
@@ -61,6 +65,16 @@ public class MyController {
         SseEmitter sseEmitter = new SseEmitter(Long.MAX_VALUE);
         clientPushService.addEmitter(sseEmitter);
         return sseEmitter;
+    }
+
+
+    @GetMapping("/stream")
+    public String stream() {
+        try {
+            return streamService.getFootballMatchInfo();
+        } catch (Exception e) {
+            return "error";
+        }
     }
 }
 
