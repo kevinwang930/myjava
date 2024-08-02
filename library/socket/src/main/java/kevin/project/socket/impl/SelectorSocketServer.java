@@ -1,7 +1,5 @@
 package kevin.project.socket.impl;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -23,11 +21,8 @@ import java.util.concurrent.TimeUnit;
  * @Description TODO
  * @Date 2024/7/27
  **/
-@Setter
-@Getter
 public class SelectorSocketServer {
     Selector clientSelector = null;
-
 
 
     public static void main(String[] args) throws IOException {
@@ -69,7 +64,7 @@ public class SelectorSocketServer {
         clientSelector = Selector.open();
         Thread serverThread = new Thread(new ServerTask());
         serverThread.start();
-        ExecutorService executorService = new ThreadPoolExecutor(20,50,10, TimeUnit.SECONDS,
+        ExecutorService executorService = new ThreadPoolExecutor(20, 50, 10, TimeUnit.SECONDS,
                 new LinkedBlockingDeque<>());
         ServerContext context = new ServerContext();
         MessageHandler handler = new EchoMessageHandler();
@@ -87,7 +82,7 @@ public class SelectorSocketServer {
                     key.interestOps(key.interestOps() & (~SelectionKey.OP_READ));
                     executorService.submit(() -> {
                         try {
-                            answerWithHandler(key,handler,context);
+                            answerWithHandler(key, handler, context);
                         } catch (IOException e) {
                             System.out.println(e);
                         }
@@ -115,15 +110,15 @@ public class SelectorSocketServer {
                     int select = selector.select();
                     System.out.println("server select count: " + select);
 
-                        Set<SelectionKey> selectedKeys = selector.selectedKeys();
-                        Iterator<SelectionKey> iter = selectedKeys.iterator();
-                        while (iter.hasNext()) {
-                            SelectionKey key = iter.next();
-                            iter.remove();
-                            if (key.isAcceptable()) {
-                                register(clientSelector, serverSocket);
-                            }
+                    Set<SelectionKey> selectedKeys = selector.selectedKeys();
+                    Iterator<SelectionKey> iter = selectedKeys.iterator();
+                    while (iter.hasNext()) {
+                        SelectionKey key = iter.next();
+                        iter.remove();
+                        if (key.isAcceptable()) {
+                            register(clientSelector, serverSocket);
                         }
+                    }
 
                 }
             } catch (IOException e) {
