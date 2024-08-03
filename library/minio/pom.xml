@@ -24,6 +24,11 @@
             <artifactId>minio</artifactId>
             <version>8.2.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -2,6 +2,8 @@ package kevin.project.socket.impl.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
+import io.netty.channel.epoll.Epoll;
+import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -35,8 +37,15 @@ public class NettySocketServer {
     }
 
     public void start() throws Exception {
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup bossGroup;
+        EventLoopGroup workerGroup;
+        if (Epoll.isAvailable()) {
+            bossGroup = new EpollEventLoopGroup(1);
+            workerGroup = new EpollEventLoopGroup();
+        } else {
+            bossGroup = new NioEventLoopGroup(1);
+            workerGroup = new NioEventLoopGroup();
+        }
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)

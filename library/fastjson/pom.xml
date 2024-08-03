@@ -29,6 +29,11 @@
             <version>4.0.1</version> <!-- Use the latest version -->
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
     </dependencies>
 
     <artifactId>fastjson</artifactId>
