@@ -1,7 +1,5 @@
 package kevin.project.lock;
 
-import lombok.Synchronized;
-import lombok.extern.slf4j.Slf4j;
 import org.openjdk.jol.info.ClassLayout;
 
 /**
@@ -13,7 +11,7 @@ import org.openjdk.jol.info.ClassLayout;
 public class ObjectLockLearn {
 
 
-    public static void objectLockLearn() throws InterruptedException {
+    public static void monitorLearn() throws InterruptedException {
         Object lock = new Object();
         System.out.println(ClassLayout.parseInstance(lock).toPrintable());
         Thread thread = new Thread(() -> {
@@ -39,7 +37,10 @@ public class ObjectLockLearn {
         thread.join();
     }
 
+
+
+
     public static void main(String[] args) throws InterruptedException {
-        objectLockLearn();
+        monitorLearn();
     }
 }

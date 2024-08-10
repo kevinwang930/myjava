@@ -1,0 +1,24 @@
+syntax = "proto3";
+package kevin.project.socket.impl.proto;
+
+message Person {
+  string name = 1;
+  int32 age = 2;
+}
+
+
+message Animal {
+  string name = 1;
+  string type = 2;
+}
+
+message Request {
+  oneof entity {
+    Person person = 1;
+    Animal animal = 2;
+  }
+}
+
+message Response {
+  string greeting = 1;
+}

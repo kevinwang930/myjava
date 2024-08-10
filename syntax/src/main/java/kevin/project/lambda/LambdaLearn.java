@@ -25,6 +25,17 @@ public class LambdaLearn {
         System.out.println(p.greet()); // dynamic dispatch
     }
 
+
+    public void lambdaThreadLearn() throws InterruptedException {
+        int a = 1;
+        Thread thread = new Thread(() -> System.out.println(a));
+        thread.start();
+//        a = 2;
+        System.out.println("after thread start");
+        thread.join();
+        System.out.println(a);
+    }
+
     public static void main(String[] args) {
         LambdaLearn lambdaLearn = new LambdaLearn();
         lambdaLearn.lambdaLearn();

@@ -27,11 +27,11 @@ public class SocketClient {
         AtomicInteger total = new AtomicInteger(0);
         AtomicInteger error = new AtomicInteger(0);
         ExecutorService executorService = new ThreadPoolExecutor(
-                10,
-                10,
+                1,
+                1,
                 30,
                 TimeUnit.SECONDS,
-                new LimitedQueue<>(10));
+                new LimitedQueue<>(1));
         long c = System.currentTimeMillis();
         while (System.currentTimeMillis() - c < 1000) {
             executorService.submit(() -> {

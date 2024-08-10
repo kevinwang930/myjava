@@ -15,14 +15,20 @@ import java.util.Properties;
 public class ProducerLearn {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         Producer<String, String> producer = new KafkaProducer<>(props);
-        producer.send(new ProducerRecord<>("test-topic", "key", "value"));
+        System.out.println("producer started");
+        for (int i = 0; i < 5; i++) {
+
+            producer.send(new ProducerRecord<>("quickstart-events", "key"+i, "value"));
+            System.out.println("key_" +i + " sent "+ System.currentTimeMillis());
+            Thread.sleep(1000);
+        }
         producer.close();
     }
 }

@@ -18,7 +18,7 @@ import java.util.Properties;
 public class ConsumerLearn {
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "190.92.230.245:9092");
+        props.put("bootstrap.servers", "127.0.0.1:9092");
         props.put("group.id", "test-group");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
@@ -29,7 +29,8 @@ public class ConsumerLearn {
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, String> record : records) {
-                System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+                System.out.printf("offset = %d, key = %s, value = %s%n ,time=%d", record.offset(), record.key(),
+                        record.value(),System.currentTimeMillis());
             }
         }
     }

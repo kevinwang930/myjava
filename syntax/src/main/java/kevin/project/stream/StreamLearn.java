@@ -53,10 +53,10 @@ public class StreamLearn {
 
     public static void main(String[] args) throws IOException {
         StreamLearn streamLearn = new StreamLearn();
-//        streamLearn.inputOutputLearn();
+        streamLearn.inputOutputLearn();
 //        streamLearn.fileInputOutputLearn();
 //        streamLearn.streamLearn();
-        streamLearn.streamExceptionLearn();
+//        streamLearn.streamExceptionLearn();
     }
 
     public void streamExceptionLearn() throws IOException {
