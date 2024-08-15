@@ -16,9 +16,7 @@ public class FfmpegLearn {
 
     public static void outputstreamLearn() {
 
-        try (InputStream inputStream = Files.newInputStream(Path.of("src/main/resources/video_sample1.mp4"))) {
-            String ffmpegCmd = "ffmpeg -i - -hls_time 10 -start_number 0 -hls_list_size 0 " +
-                    "-f hls output.m3u8";
+        try {
             ProcessBuilder builder = new ProcessBuilder(
                     "ffmpeg",
                     "-i", "-",  // Read from stdin
@@ -31,7 +29,6 @@ public class FfmpegLearn {
             builder.redirectErrorStream(false);
             Process process = builder.start();
             OutputStream input = process.getOutputStream();
-            inputStream.transferTo(input);
             input.close();
             InputStream output = process.getInputStream();
             System.out.println(IOUtils.toString(output));
