@@ -59,34 +59,18 @@ public class Ffmpeg {
 
             // Initialize the recorder
             recorder = new FFmpegFrameRecorder(output, grabber.getImageWidth(), grabber.getImageHeight(), grabber.getAudioChannels());
-
-            // Set FLV format
-//            recorder.setFormat("m");
-
-            // Set video codec
             recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
-//            recorder.setFrameRate(grabber.getFrameRate());
-//            recorder.setVideoBitrate(grabber.getVideoBitrate());
-            recorder.setPixelFormat(avutil.AV_PIX_FMT_YUV420P);
-            recorder.setVideoOption("crf", "10");
-            recorder.setVideoQuality(10);
-            recorder.setOption("crf","10");
-            recorder.setVideoOption("skip_frames", "1");
-            recorder.setOption("skip_frames","1");
-
-            // Set audio codec
+//            recorder.setPixelFormat(avutil.AV_PIX_FMT_YUV420P);
+            recorder.setVideoQuality(5);
+            recorder.setAudioQuality(5);
             recorder.setAudioCodec(avcodec.AV_CODEC_ID_AAC);
-//            recorder.setSampleRate(grabber.getSampleRate());
-//            recorder.setAudioBitrate(grabber.getAudioBitrate());
-            // Start the recorder
             recorder.start();
 
             // Read and write frames
             Frame frame;
-            while ((frame = grabber.grabFrame()) != null) {
+            while ((frame = grabber.grab()) != null) {
                 recorder.record(frame);
             }
-            recorder.setTimestamp(grabber.getTimestamp());
         } finally {
             // Close grabber and recorder
             if (grabber != null) {
@@ -112,32 +96,30 @@ public class Ffmpeg {
             long start = System.currentTimeMillis();
             System.out.println("start segment " + start);
             grabber.start(true);
-            recorder = FFmpegFrameRecorder.createDefault(output, grabber.getImageWidth(), grabber.getImageHeight());
+            recorder = new FFmpegFrameRecorder(output, grabber.getImageWidth(), grabber.getImageHeight(),
+                    grabber.getAudioChannels());
 
             recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
-            recorder.setVideoOption("crf", "40");
-            recorder.setAspectRatio(grabber.getAspectRatio());
-            recorder.setFrameRate(grabber.getFrameRate());
-
-
+            recorder.setVideoOption("crf", "18");
             recorder.setAudioCodec(avcodec.AV_CODEC_ID_AAC);
-            recorder.setAudioBitrate(grabber.getAudioBitrate());
-            recorder.setAudioOptions(grabber.getAudioOptions());
-            recorder.setSampleRate(grabber.getSampleRate());
-            recorder.setAudioChannels(grabber.getAudioChannels());
 
             recorder.setFormat("hls");
             recorder.setOption("hls_time", "2");
             recorder.setOption("hls_list_size", "0");
             recorder.setOption("start_number", "0");
+            recorder.setOption("segment_list","/Users/hwkf-marlsen-47932/Documents/javacv/sample_30/list.log");
+            recorder.setOption("hls_flags", "single_file");
+            recorder.setVideoOption("hls_flags", "single_file");
 
             AVFormatContext formatContext = grabber.getFormatContext();
+
 
             recorder.start(formatContext);
             AVPacket pkt = null;
             Frame frame = null;
             long dts = 0, pts = 0;
-//            while ((frame = grabber.grabFrame()) != null) {
+            grabber.flush();
+//            while ((frame = grabber.grab()) != null) {
 //                recorder.record(frame);
 //            }
             while ((pkt = grabber.grabPacket()) != null) {
@@ -146,8 +128,7 @@ public class Ffmpeg {
             System.out.println("end segment total time " + (System.currentTimeMillis() - start));
         } finally {
             if (recorder != null) {
-                recorder.stop();
-                recorder.release();
+                recorder.close();
             }
         }
     }
@@ -204,21 +185,24 @@ public class Ffmpeg {
         }
     }
 
-    public static void segment() {
-        String path = "/Users/hwkf-marlsen-47932/Documents/output.mp4";
+    public static void segment() throws IOException {
+        String path = "/Users/hwkf-marlsen-47932/Documents/sample_30.mp4";
         System.out.println((Files.exists(Paths.get(path)) ? "exist" : "not exist"));
-        String output = "/Users/hwkf-marlsen-47932/Documents/ffmpeg/output.m3u8";
+        String output = "/Users/hwkf-marlsen-47932/Documents/ffmpeg/sample_30/output.m3u8";
+        Files.createDirectories(Paths.get(output).getParent());
         try {
             ProcessBuilder builder = new ProcessBuilder(
                     "ffmpeg",
+//                    "-loglevel","40",
                     "-i", path,
                     "-c:v", "copy",
-                    "-c:a", "aac",
-//                    "-crf", "18",
+                    "-c:a", "copy",
+                    "-crf", "18",
                     "-hls_time", "2",
                     "-start_number", "0",
                     "-hls_list_size", "0",
                     "-f", "hls",
+                    "-hls_flags", "single_file",
                     output
             );
             builder.redirectErrorStream(false);
@@ -253,9 +237,8 @@ public class Ffmpeg {
     public static void main(String[] args) throws URISyntaxException, IOException {
 //        detectFormat();
 //        segmentJavaCv();
-//        segment();
+        segment();
 //        segmentReEncode();
-        encode();
+//        encode();
     }
-
 }
