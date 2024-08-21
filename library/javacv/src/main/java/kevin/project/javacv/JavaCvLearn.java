@@ -19,12 +19,12 @@ import org.bytedeco.ffmpeg.global.avutil;
  * @Description TODO
  * @Date 2024/8/10
  **/
-public class Ffmpeg {
+public class JavaCvLearn {
 
     public static void detectFormat() throws URISyntaxException, FrameGrabber.Exception {
 //        System.setProperty("org.bytedeco.javacpp.pathsFirst","true");
 //        System.setProperty("org.bytedeco.javacpp.logger.debug","true");
-        URL path = Ffmpeg.class.getResource("/sample.mp4");
+        URL path = JavaCvLearn.class.getResource("/sample.mp4");
         System.out.println(path);
 
         long start = System.currentTimeMillis();
@@ -109,7 +109,6 @@ public class Ffmpeg {
             recorder.setOption("start_number", "0");
             recorder.setOption("segment_list","/Users/hwkf-marlsen-47932/Documents/javacv/sample_30/list.log");
             recorder.setOption("hls_flags", "single_file");
-            recorder.setVideoOption("hls_flags", "single_file");
 
             AVFormatContext formatContext = grabber.getFormatContext();
 
@@ -236,8 +235,8 @@ public class Ffmpeg {
 
     public static void main(String[] args) throws URISyntaxException, IOException {
 //        detectFormat();
-//        segmentJavaCv();
-        segment();
+        segmentJavaCv();
+//        segment();
 //        segmentReEncode();
 //        encode();
     }
