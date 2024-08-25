@@ -37,7 +37,7 @@ public class CglibLearn {
         });
 
         PersonService proxy = (PersonService) enhancer.create();
-
+        System.out.println(proxy.sayHello("test"));
         System.out.println(proxy.lengthOfName("Mary"));
 
     }
@@ -67,5 +67,4 @@ public class CglibLearn {
         intercepterLearn();
         fastClassLearn();
     }
-
 }
