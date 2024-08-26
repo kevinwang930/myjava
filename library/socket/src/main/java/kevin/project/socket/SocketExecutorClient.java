@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @Description TODO
  * @Date 2024/7/27
  **/
-public class SocketClient {
+public class SocketExecutorClient {
 
     public static void main(String[] args) {
         test();
@@ -48,7 +48,7 @@ public class SocketClient {
                     String inputLine;
                     inputLine = in.readLine();
                     System.out.println("Received: " + inputLine);
-                    System.out.println("socket closed " + index);
+//                    System.out.println("socket closed " + index);
                 } catch (Exception e) {
                     System.err.println("Don't know about host " + hostName);
                     System.exit(1);

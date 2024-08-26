@@ -27,21 +27,28 @@ public class Client {
         String hostName = "127.0.0.1";
         int portNumber = 8989;
 
-
-        try (
-                Socket socket = new Socket(hostName, portNumber)
-        ) {
-            System.out.printf("socket opened\n");
-            OutputStream outputStream = socket.getOutputStream();
-            InputStream inputStream = socket.getInputStream();
-            Simple.Person person = Simple.Person.newBuilder().setName("test").setAge(30).build();
-            Simple.Request request = Simple.Request.newBuilder().setPerson(person).build();
-            request.writeDelimitedTo(outputStream);
-            Simple.Response response = Simple.Response.parseDelimitedFrom(inputStream);
-            System.out.println("server response: "+ response.getGreeting());
-        } catch (Exception e) {
-            System.err.println("Don't know about host " + hostName);
-            System.exit(1);
+        long start = System.currentTimeMillis();
+        long cnt = 0;
+        while (System.currentTimeMillis() - start < 1000) {
+            try (
+                    Socket socket = new Socket(hostName, portNumber)
+            ) {
+//                System.out.printf("socket opened\n");
+                OutputStream outputStream = socket.getOutputStream();
+                InputStream inputStream = socket.getInputStream();
+                Simple.Person person = Simple.Person.newBuilder().setName("test").setAge(30).build();
+                Simple.Request request = Simple.Request.newBuilder().setPerson(person).build();
+                request.writeDelimitedTo(outputStream);
+                Simple.Response response = Simple.Response.parseDelimitedFrom(inputStream);
+                System.out.println("server response: "+ response.getGreeting());
+                cnt++;
+                System.out.println(cnt);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
         }
+        System.out.println(cnt);
+
     }
 }

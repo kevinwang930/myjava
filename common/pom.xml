@@ -6,7 +6,7 @@
     <parent>
         <groupId>kevin.project</groupId>
         <artifactId>myJava</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>common</artifactId>

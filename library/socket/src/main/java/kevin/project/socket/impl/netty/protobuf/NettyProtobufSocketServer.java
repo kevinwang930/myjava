@@ -1,4 +1,4 @@
-package kevin.project.socket.impl.netty;
+package kevin.project.socket.impl.netty.protobuf;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -7,10 +7,17 @@ import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
+import io.netty.handler.codec.protobuf.ProtobufEncoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
+import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-import kevin.project.socket.impl.EchoMessageHandler;
 import kevin.project.socket.impl.MessageHandler;
+import kevin.project.socket.impl.netty.NettyEchoMessageHandler;
+import kevin.project.socket.impl.netty.NettyMessageHandler;
+import kevin.project.socket.impl.netty.NettyServerContext;
+import kevin.project.socket.impl.proto.Simple;
 
 
 /**
@@ -19,21 +26,21 @@ import kevin.project.socket.impl.MessageHandler;
  * @Description TODO
  * @Date 2024/8/1
  **/
-public class NettySocketServer {
+public class NettyProtobufSocketServer {
 
     private final int port;
     private final NettyServerContext context;
-    private final NettyMessageHandler messageHandler;
+    private final ProtobufMessageHandler messageHandler;
 
-    public NettySocketServer(int port) {
+    public NettyProtobufSocketServer(int port) {
         this.port = port;
         this.context = new NettyServerContext();
-        this.messageHandler = new NettyEchoMessageHandler();
+        this.messageHandler = new NettyProtobufMessageHandler();
     }
 
     public static void main(String[] args) throws Exception {
         int port = 8989;
-        new NettySocketServer(port).start();
+        new NettyProtobufSocketServer(port).start();
     }
 
     public void start() throws Exception {
@@ -54,8 +61,11 @@ public class NettySocketServer {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(
-                                    new StringDecoder(),
-                                    new StringEncoder(),
+
+                                    new ProtobufVarint32FrameDecoder(),
+                                    new ProtobufDecoder(Simple.Request.getDefaultInstance()),
+                                    new ProtobufVarint32LengthFieldPrepender(),
+                                    new ProtobufEncoder(),
                                     new ServerHandler(context, messageHandler)
                             );
                         }
@@ -72,11 +82,11 @@ public class NettySocketServer {
         }
     }
 
-    private class ServerHandler extends SimpleChannelInboundHandler<String> {
+    private class ServerHandler extends SimpleChannelInboundHandler<Simple.Request> {
         private final NettyServerContext context;
-        private final NettyMessageHandler messageHandler;
+        private final ProtobufMessageHandler messageHandler;
 
-        public ServerHandler(NettyServerContext context, NettyMessageHandler messageHandler) {
+        public ServerHandler(NettyServerContext context, ProtobufMessageHandler messageHandler) {
             this.context = context;
             this.messageHandler = messageHandler;
         }
@@ -88,7 +98,7 @@ public class NettySocketServer {
         }
 
         @Override
-        protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        protected void channelRead0(ChannelHandlerContext ctx, Simple.Request msg) throws Exception {
 //            System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
             messageHandler.onMessage(ctx, msg, context);
         }
