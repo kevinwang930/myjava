@@ -58,6 +58,7 @@
         <module>library/socketio</module>
         <module>library/javacv</module>
         <module>library/jni</module>
+        <module>library/elasticsearch</module>
     </modules>
     <properties>
         <java.version>22</java.version>
