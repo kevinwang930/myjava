@@ -7,14 +7,14 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class CommonAspect {
 
     private Logger logger = LogManager.getLogger();
 
     @Before(value = "within(kevin.project.controller.*Controller)")
     public void aspect(JoinPoint joinPoint) throws Throwable {
-        logger.info("before aspect {}",joinPoint.getSignature());
+        logger.info("before  {}",joinPoint.getSignature());
     }
 }

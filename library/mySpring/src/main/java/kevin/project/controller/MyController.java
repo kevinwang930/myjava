@@ -10,9 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.ArrayList;
@@ -75,6 +73,12 @@ public class MyController {
         } catch (Exception e) {
             return "error";
         }
+    }
+
+
+    @PostMapping("/formtest")
+    public String formtest(@RequestBody Person person, @ModelAttribute Person person1) {
+        return person.getName() + person.getAge() + person1.getName() + person1.getAge() ;
     }
 }
 

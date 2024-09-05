@@ -31,12 +31,12 @@ public class LuceneLearn {
         addDoc(writer, "Lucene for Dummies", "55320055Z");
         addDoc(writer, "Managing Gigabytes", "55063554A");
         addDoc(writer, "The Art of Computer Science", "9900333X");
-        addDoc(writer,"链家美女",""+System.currentTimeMillis());
+        addDoc(writer,"中餐",""+System.currentTimeMillis());
         addDoc(writer,"优衣库更衣室",""+System.currentTimeMillis());
         writer.close();
 
         // Searching part
-        String querystr = args.length > 0 ? args[0] : "优衣库事件";
+        String querystr = args.length > 0 ? args[0] : "优衣";
         Query q = new QueryParser("title", analyzer).parse(querystr);
 
         // Search
