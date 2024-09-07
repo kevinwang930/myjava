@@ -47,8 +47,18 @@ public class FastJsonLearn {
         System.out.println(javaObject.getName());
     }
 
+    public void jsonReaderLearn() {
+        User user = new User("kevin", "test");
+        String userString = JSON.toJSONString(user, JSONWriter.Feature.WriteClassName);
+        System.out.println(userString);
+        Object result = JSON.parseObject(userString, Object.class, JSONReader.Feature.SupportAutoType);
+        System.out.println(result);
+        System.out.printf(result.getClass().getName());
+    }
+
     public static void main(String[] args) {
         FastJsonLearn fastJsonLearn = new FastJsonLearn();
         fastJsonLearn.jsonObjectLearn();
+        fastJsonLearn.jsonReaderLearn();
     }
 }
