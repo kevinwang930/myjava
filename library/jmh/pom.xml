@@ -10,28 +10,26 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>myAvatica</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>client</module>
-        <module>server</module>
-    </modules>
+    <artifactId>jmh</artifactId>
 
     <properties>
-
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
-            <groupId>org.apache.calcite.avatica</groupId>
-            <artifactId>avatica-core</artifactId>
-            <version>1.25.0</version>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>org.apache.calcite.avatica</groupId>
-            <artifactId>avatica-server</artifactId>
-            <version>1.25.0</version>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
         </dependency>
+
+
     </dependencies>
 
 </project>

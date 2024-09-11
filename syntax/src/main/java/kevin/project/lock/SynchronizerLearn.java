@@ -2,6 +2,7 @@ package kevin.project.lock;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -15,24 +16,47 @@ public class SynchronizerLearn {
 
     public static void reEntrantLockLearn() throws InterruptedException {
         ReentrantLock lock = new ReentrantLock();
+        Condition condition = lock.newCondition();
+
+
         Thread thread = new Thread(() -> {
             lock.lock();
             System.out.println("inside thread lock");
             try {
-
-                Thread.sleep(2000);
+                System.out.println("start condition await");
+                condition.await(1000L, TimeUnit.SECONDS);
+                System.out.println("condition await finished");
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-            lock.unlock();
             System.out.println("outside thread lock");
         });
+
+        Thread thread1 = new Thread(() -> {
+            lock.lock();
+            System.out.println("inside thread1 lock");
+            try {
+                System.out.println("start condition1 await");
+                condition.await(1000L, TimeUnit.SECONDS);
+                System.out.println("condition1 await finished");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+            System.out.println("outside thread1 lock");
+        });
         thread.start();
+        Thread.sleep(1000);
+        thread1.start();
         lock.lock();
-        System.out.println("inside lock");
-        Thread.sleep(2000);
+        condition.signal();
         lock.unlock();
-        System.out.println("outside lock");
+        System.out.println("signal finished");
+        thread.join();
+        thread1.join();
     }
 
     public static void conditionObjectLearn() throws InterruptedException {
@@ -77,9 +101,9 @@ public class SynchronizerLearn {
 
 
     public static void main(String[] args) throws InterruptedException {
-//        reEntrantLockLearn();
-        conditionObjectLearn();
-        cyclicBarrierLearn();
+        reEntrantLockLearn();
+//        conditionObjectLearn();
+//        cyclicBarrierLearn();
     }
 
     static class Worker implements Runnable {

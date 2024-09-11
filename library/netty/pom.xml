@@ -10,27 +10,18 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>myAvatica</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>client</module>
-        <module>server</module>
-    </modules>
+    <artifactId>netty</artifactId>
 
     <properties>
-
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
-            <groupId>org.apache.calcite.avatica</groupId>
-            <artifactId>avatica-core</artifactId>
-            <version>1.25.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.calcite.avatica</groupId>
-            <artifactId>avatica-server</artifactId>
-            <version>1.25.0</version>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-common</artifactId>
         </dependency>
     </dependencies>
 
