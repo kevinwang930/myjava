@@ -25,7 +25,7 @@ public class FfmpegLearn {
         command.add("json");
         command.add("-show_format");
         command.add("-show_streams");
-        command.add("/Users/hwkf-marlsen-47932/Documents/sample.mp4");
+        command.add("/Users/hwllcp-marlsen-47932/Documents/index.mp4");
 
         try {
             ProcessBuilder pb = new ProcessBuilder(command);
@@ -68,8 +68,6 @@ public class FfmpegLearn {
             System.out.println("Duration: " + format.getString("duration"));
         }
     }
-
-
 
     public static void main(String[] args) {
         probeLearn();
