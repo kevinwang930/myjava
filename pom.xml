@@ -61,6 +61,7 @@
         <module>library/elasticsearch</module>
         <module>library/netty</module>
         <module>library/jmh</module>
+        <module>library/zxing</module>
     </modules>
     <properties>
         <java.version>22</java.version>
@@ -222,6 +223,18 @@
                 <groupId>org.openjdk.jmh</groupId>
                 <artifactId>jmh-generator-annprocess</artifactId>
                 <version>1.37</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>3.5.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>3.5.3</version>
             </dependency>
 
 
