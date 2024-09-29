@@ -12,13 +12,13 @@ import java.nio.charset.StandardCharsets;
 public class MinioLearn {
 
 
-    private static String ENDPOINT = "http://localhost:9000"; // Your MinIO server URL
+    private static String ENDPOINT = "obs.ap-southeast-1.myhuaweicloud.com"; // Your MinIO server URL
 
-    private static String ACCESS_KEY = "root"; // Your access key
+    private static String ACCESS_KEY = "IEBNRKCBQ4KC0AR4NLDD"; // Your access key
 
-    private static String SECRET_KEY = "abc123456"; // Your secret key
+    private static String SECRET_KEY = "GizqJcUZ792jNYTbMyNG5PAEtNyO9XBIBDkkpZv2"; // Your secret key
 
-    private static final String BUCKET_NAME = "test"; // Your bucket name
+    private static final String BUCKET_NAME = "gs-fat"; // Your bucket name
 
     private MinioClient minioClient = MinioClient.builder()
                                                  .endpoint(ENDPOINT)

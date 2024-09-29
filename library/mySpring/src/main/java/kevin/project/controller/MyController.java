@@ -13,10 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.*;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 @RestController
 public class MyController {
@@ -35,7 +34,7 @@ public class MyController {
     @Autowired
     private StreamService streamService;
 
-    private ExecutorService service = new ScheduledThreadPoolExecutor(1) ;
+    private ExecutorService service = new ScheduledThreadPoolExecutor(1);
 
     @GetMapping("/mybatis")
     public User testMybatis() {
@@ -58,6 +57,12 @@ public class MyController {
         return person;
     }
 
+    @GetMapping("/test-arg")
+    public String testArg( Person person, @RequestParam Map<String,String> params) {
+        return params
+                     .toString();
+    }
+
     @GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter sse() {
         SseEmitter sseEmitter = new SseEmitter(Long.MAX_VALUE);
@@ -78,7 +83,7 @@ public class MyController {
 
     @PostMapping("/formtest")
     public String formtest(@RequestBody Person person, @ModelAttribute Person person1) {
-        return person.getName() + person.getAge() + person1.getName() + person1.getAge() ;
+        return person.getName() + person.getAge() + person1.getName() + person1.getAge();
     }
 }
 
