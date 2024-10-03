@@ -30,12 +30,11 @@ public class UUIDLearn {
     }
 
     public static void uuidLearn() {
-        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String uuid = UUID.randomUUID().toString();
         System.out.println(uuid);
-        byte[] bytes = hex2Bytes(uuid);
-        String result = Base64.getEncoder().withoutPadding(). encodeToString(bytes);
-        System.out.println(result);
+        System.out.println(uuid.length());
     }
+
 
     public static void main(String[] args) {
         uuidLearn();
