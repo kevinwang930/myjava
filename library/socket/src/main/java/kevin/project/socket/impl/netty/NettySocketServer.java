@@ -87,11 +87,6 @@ public class NettySocketServer {
             context.addClient(ctx.channel());
         }
 
-        @Override
-        protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-//            System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
-            messageHandler.onMessage(ctx, msg, context);
-        }
 
         @Override
         public void channelInactive(ChannelHandlerContext ctx) {
@@ -103,6 +98,12 @@ public class NettySocketServer {
         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
             cause.printStackTrace();
             ctx.close();
+        }
+
+        @Override
+        protected void messageReceived(ChannelHandlerContext ctx, String msg) throws Exception {
+            System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
+            messageHandler.onMessage(ctx, msg, context);
         }
     }
 }

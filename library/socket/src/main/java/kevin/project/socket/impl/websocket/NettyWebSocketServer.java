@@ -52,14 +52,15 @@ public class NettyWebSocketServer {
     }
 
     public static class WebSocketFrameHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
+
         @Override
-        protected void channelRead0(ChannelHandlerContext ctx, WebSocketFrame frame) {
-            if (frame instanceof TextWebSocketFrame) {
-                String request = ((TextWebSocketFrame) frame).text();
+        protected void messageReceived(ChannelHandlerContext ctx, WebSocketFrame msg) throws Exception {
+            if (msg instanceof TextWebSocketFrame) {
+                String request = ((TextWebSocketFrame) msg).text();
                 System.out.println("Received: " + request);
                 ctx.channel().writeAndFlush(new TextWebSocketFrame("Message received: " + request));
             } else {
-                String message = "Unsupported frame type: " + frame.getClass().getName();
+                String message = "Unsupported frame type: " + msg.getClass().getName();
                 throw new UnsupportedOperationException(message);
             }
         }

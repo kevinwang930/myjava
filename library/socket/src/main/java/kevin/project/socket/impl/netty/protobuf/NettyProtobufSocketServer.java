@@ -98,12 +98,6 @@ public class NettyProtobufSocketServer {
         }
 
         @Override
-        protected void channelRead0(ChannelHandlerContext ctx, Simple.Request msg) throws Exception {
-//            System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
-            messageHandler.onMessage(ctx, msg, context);
-        }
-
-        @Override
         public void channelInactive(ChannelHandlerContext ctx) {
             System.out.println("Client disconnected: " + ctx.channel().remoteAddress());
             context.removeClient(ctx.channel());
@@ -113,6 +107,12 @@ public class NettyProtobufSocketServer {
         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
             cause.printStackTrace();
             ctx.close();
+        }
+
+        @Override
+        protected void messageReceived(ChannelHandlerContext ctx, Simple.Request msg) throws Exception {
+            System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
+            messageHandler.onMessage(ctx, msg, context);
         }
     }
 }

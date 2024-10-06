@@ -9,6 +9,18 @@
     <packaging>pom</packaging>
 
 
+    <properties>
+        <java.version>23</java.version>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+
+        <lombok.version>1.18.30</lombok.version>
+        <springboot.version>3.3.4</springboot.version>
+        <grpc.version>1.66.0</grpc.version>
+        <protoc.version>4.27.3</protoc.version>
+        <log4j.version>2.23.1</log4j.version>
+        <jetty.version>12.0.14</jetty.version>
+    </properties>
     <modules>
 
         <module>syntax</module>
@@ -63,17 +75,6 @@
         <module>library/jmh</module>
         <module>library/zxing</module>
     </modules>
-    <properties>
-        <java.version>22</java.version>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
-
-        <lombok.version>1.18.30</lombok.version>
-        <springboot.version>3.2.3</springboot.version>
-        <grpc.version>1.66.0</grpc.version>
-        <protoc.version>4.27.3</protoc.version>
-        <log4j.version>2.23.1</log4j.version>
-    </properties>
 
     <dependencyManagement>
 
@@ -81,6 +82,13 @@
 
 
         <dependencies>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-bom</artifactId>
+                <version>${jetty.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>
@@ -237,6 +245,28 @@
                 <version>3.5.3</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>6.1.0</version>
+            </dependency>
+
+
+
+            <!-- https://mvnrepository.com/artifact/org.eclipse.jetty.ee10/jetty-ee10-servlet -->
+            <dependency>
+                <groupId>org.eclipse.jetty.ee10</groupId>
+                <artifactId>jetty-ee10-servlet</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+
 
 
 
@@ -267,6 +297,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.12.1</version> <!-- or whichever newer version is available -->
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
         </plugins>
     </build>
