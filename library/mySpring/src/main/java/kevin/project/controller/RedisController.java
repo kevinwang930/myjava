@@ -1,5 +1,6 @@
 package kevin.project.controller;
 
+import kevin.project.service.LettuceRedisService;
 import kevin.project.service.RedisService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +23,9 @@ public class RedisController {
     @Autowired
     private RedisService redisService;
 
+    @Autowired
+    private LettuceRedisService lettuceRedisService;
+
     private ExecutorService service = new ScheduledThreadPoolExecutor(1);
 
     @GetMapping("/keys")
@@ -35,6 +39,11 @@ public class RedisController {
     @ResponseBody
     public void list() {
          redisService.getList("test");
+    }
+
+    @GetMapping("/template-test")
+    public void templateTest() {
+        lettuceRedisService.cache();
     }
 }
 

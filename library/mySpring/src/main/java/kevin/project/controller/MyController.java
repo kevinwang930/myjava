@@ -85,5 +85,10 @@ public class MyController {
     public String formtest(@RequestBody Person person, @ModelAttribute Person person1) {
         return person.getName() + person.getAge() + person1.getName() + person1.getAge();
     }
+
+    @GetMapping("param-test")
+    public String paramTest(@ModelAttribute Person person) {
+        return person.getName();
+    }
 }
 
