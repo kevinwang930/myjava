@@ -1,6 +1,6 @@
 package kevin.project.mongo;
 
-import kevin.project.model.Person;
+import kevin.project.myspring.model.Person;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;

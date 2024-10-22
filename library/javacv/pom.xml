@@ -13,8 +13,6 @@
     <artifactId>javacv</artifactId>
 
     <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <system.mac.classifier>macosx-arm64</system.mac.classifier>
         <system.mac.gpl.classifier>macosx-arm64-gpl</system.mac.gpl.classifier>

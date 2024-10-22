@@ -1,6 +1,6 @@
 package kevin.project.mongo;
 
-import kevin.project.model.Person;
+import kevin.project.myspring.model.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
