@@ -2,6 +2,10 @@ package kevin.project.redis.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -15,6 +19,7 @@ import java.time.Duration;
  **/
 @Configuration
 public class RedisConfig {
+
     @Bean
     public JedisPool jedisPool() {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
@@ -31,4 +36,22 @@ public class RedisConfig {
         poolConfig.setBlockWhenExhausted(true);
         return new JedisPool(poolConfig, "localhost", 6379);
     }
+
+    @Bean
+    public LettuceConnectionFactory redisConnectionFactory() {
+        return new LettuceConnectionFactory();
+    }
+
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
+
+        return redisTemplate;
+    }
+    
+    
 }
