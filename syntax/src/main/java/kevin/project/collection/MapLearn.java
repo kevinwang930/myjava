@@ -45,8 +45,19 @@ public class MapLearn {
 
     }
 
+    public static void computeLearn() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("One", 1);
+        map.put("Two", 2);
+        map.put("Three", 3);
+        map.put("Four", 4);
+        map.compute("one",(k,v) -> v == null ? 1 : v + 1);
+        System.out.println(map);
+    }
+
 
     public static void main(String[] args) throws InterruptedException {
         concurrentHashMapLearn();
+        computeLearn();
     }
 }
