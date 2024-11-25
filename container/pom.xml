@@ -9,7 +9,11 @@
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>common</artifactId>
+    <artifactId>container</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>docker</module>
+    </modules>
 
     <properties>
 

@@ -39,7 +39,7 @@
         <module>library/jetty</module>
         <module>library/jetty/jettyserver</module>
         <module>library/jetty/jettyclient</module>
-        <module>common</module>
+        <module>container</module>
         <module>library/mybatis</module>
         <module>library/grpc</module>
         <module>myModule/ssl</module>
@@ -68,60 +68,7 @@
         <module>library/mybatis-plus</module>
     </modules>
 
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>Maven Central</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
 
-        <!-- Custom repository -->
-        <repository>
-            <id>custom-repo</id>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <!-- Explicitly disable mirror -->
-            <mirrorOf>*</mirrorOf>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>custom-plugin-repo</id>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <profiles>
-        <profile>
-            <id>custom-repos</id>
-            <repositories>
-                <repository>
-                    <id>private-repo</id>
-                    <url>https://repo.maven.apache.org/maven2</url>
-                    <!-- Force direct connection -->
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                    </releases>
-                </repository>
-            </repositories>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
 
     <dependencyManagement>
         <dependencies>
@@ -272,8 +219,23 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.12.1</version> <!-- or whichever newer version is available -->
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.9</version>  <!-- Specify your minimum Maven version here -->
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

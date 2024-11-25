@@ -8,6 +8,10 @@ public class OptionalLearn {
 
     }
 
+    public static void nullableLearn() {
+        Optional.ofNullable(null).ifPresent(System.out::println);
+    }
+
     public static void main(String[] args) {
 
     }

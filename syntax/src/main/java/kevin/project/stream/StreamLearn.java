@@ -8,10 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -51,12 +48,20 @@ public class StreamLearn {
         bufferedReader.lines().forEach(System.out::println);
     }
 
+
+    public void streamSortLearn() {
+        List<Integer> integerStream =
+                integerList.stream().sorted(Comparator.comparing(Integer::intValue).reversed()).toList();
+        System.out.println(integerStream);
+    }
+
     public static void main(String[] args) throws IOException {
         StreamLearn streamLearn = new StreamLearn();
-        streamLearn.inputOutputLearn();
+//        streamLearn.inputOutputLearn();
 //        streamLearn.fileInputOutputLearn();
 //        streamLearn.streamLearn();
 //        streamLearn.streamExceptionLearn();
+        streamLearn.streamSortLearn();
     }
 
     public void streamExceptionLearn() throws IOException {

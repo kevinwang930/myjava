@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class TimeLearn {
 
@@ -39,11 +40,18 @@ public class TimeLearn {
         System.out.println(date);
     }
 
+    public  void unitLearn() {
+        System.out.println(TimeUnit.SECONDS.toMillis(1));
+        System.out.println(TimeUnit.MILLISECONDS.toMicros(1));
+        System.out.println(TimeUnit.MICROSECONDS.toNanos(1));
+    }
+
     public static void main(String[] args) {
         TimeLearn timeLearn = new TimeLearn();
         timeLearn.calenderLearn();
         timeLearn.instantLearn();
         timeLearn.timeStampLearn();
         timeLearn.dataTimeLearn();
+        timeLearn.unitLearn();
     }
 }
