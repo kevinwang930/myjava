@@ -1,4 +1,4 @@
-package kevin.project;
+package kevin.project.encryption;
 
 import org.apache.commons.io.IOUtils;
 
