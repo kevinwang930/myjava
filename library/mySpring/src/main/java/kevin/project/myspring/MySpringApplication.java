@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties
-@MapperScan("kevin.project.myspring.mapper")
+@MapperScan("kevin.project.db.mapper")
 public class MySpringApplication {
 
     public static void main(String[] args) {

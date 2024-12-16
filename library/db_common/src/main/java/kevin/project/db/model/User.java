@@ -1,4 +1,4 @@
-package kevin.project.myspring.bean;
+package kevin.project.db.model;
 
 import lombok.Data;
 
@@ -6,8 +6,9 @@ import lombok.Data;
 public class User {
 
     private Long id;
-    private String name;
+    private String userName;
     private String email;
     private String password;
+    private String createdAt;
 
 }

@@ -1,7 +1,7 @@
 package kevin.project.myspring.controller;
 
 
-import kevin.project.myspring.bean.User;
+import kevin.project.db.model.User;
 import kevin.project.myspring.model.Person;
 import kevin.project.myspring.service.ClientPushService;
 import kevin.project.myspring.service.MyService;
@@ -61,4 +61,3 @@ public class MyController {
         return sseEmitter;
     }
 }
-

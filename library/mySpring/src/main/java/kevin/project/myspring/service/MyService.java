@@ -1,8 +1,8 @@
 package kevin.project.myspring.service;
 
 
-import kevin.project.myspring.bean.User;
-import kevin.project.myspring.mapper.UserMapper;
+import kevin.project.db.mapper.UserMapper;
+import kevin.project.db.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.context.properties.ConfigurationProperties;

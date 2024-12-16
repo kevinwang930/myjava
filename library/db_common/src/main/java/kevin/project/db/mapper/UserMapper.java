@@ -1,7 +1,7 @@
-package kevin.project.myspring.mapper;
+package kevin.project.db.mapper;
 
 
-import kevin.project.myspring.bean.User;
+import kevin.project.db.model.User;
 
 public interface UserMapper {
 

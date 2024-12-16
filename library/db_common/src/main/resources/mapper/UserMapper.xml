@@ -3,11 +3,11 @@
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kevin.project.myspring.mapper.UserMapper">
+<mapper namespace="kevin.project.db.mapper.UserMapper">
     <!-- findById必须和接口中的方法名一样 -->
-    <select id="findById" parameterType="java.lang.Long" resultType="kevin.project.myspring.bean.User">
+    <select id="findById" parameterType="java.lang.Long" resultType="kevin.project.db.model.User">
         select *
-        from blog_db.user
+        from users
         where id = #{id}
     </select>
 </mapper>
