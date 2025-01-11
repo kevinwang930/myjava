@@ -27,9 +27,6 @@ public class RedisController {
     @Autowired
     private LettuceCacheService lettuceCacheService;
 
-
-    private ExecutorService service = new ScheduledThreadPoolExecutor(1);
-
     @GetMapping("/keys")
     @ResponseBody
     public Set<String> hello() {
@@ -48,4 +45,3 @@ public class RedisController {
         return lettuceCacheService.getOrCreate();
     }
 }
-

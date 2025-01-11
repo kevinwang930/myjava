@@ -63,10 +63,10 @@
         <module>library/openapi-8</module>
         <module>library/springdoc-8</module>
         <module>library/pinyin4j</module>
-        <module>library/redis</module>
         <module>library/encryption</module>
         <module>library/mybatis-plus</module>
         <module>library/db_common</module>
+        <module>spring</module>
     </modules>
 
 
