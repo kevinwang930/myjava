@@ -10,6 +10,11 @@ public class StringLearn {
         System.out.println(a.replaceAll("/_lucky_/file/download\\?fileName=","test/"));
     }
 
+    public static void formatLearn() {
+        String a = "1234567890";
+        System.out.println(String.format("123 {%s}", Integer.parseInt(a)));
+    }
+
     public static void base64Learn() {
         byte[] bytes = new byte[16];
         Base64.Encoder encoder = Base64.getUrlEncoder();
@@ -47,10 +52,11 @@ public class StringLearn {
 
     public static void main(String[] args) {
 //        replaceLearn();
-        base64Learn();
+        formatLearn();
+        /*base64Learn();
         hexToBase64("420f8a835bb48ebeb845b0a26c5aa608");
         hexToBase64("e0062ad0842b6a43a79d02cdd156d589");
         base64ToHex("r/Qrql47hG4znwkeqW53ww==");
-        base64ToHex("AAAAAAAAAAAAAAAAAAAAAA==");
+        base64ToHex("AAAAAAAAAAAAAAAAAAAAAA==");*/
     }
 }

@@ -1,4 +1,4 @@
-package kevin.project.redis.service;
+package kevin.project.cache.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

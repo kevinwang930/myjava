@@ -12,7 +12,7 @@
     <artifactId>spring</artifactId>
     <packaging>pom</packaging>
     <modules>
-
+        <module>cache</module>
     </modules>
 
     <properties>

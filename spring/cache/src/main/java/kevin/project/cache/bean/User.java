@@ -1,4 +1,4 @@
-package kevin.project.redis.bean;
+package kevin.project.cache.bean;
 
 import lombok.Data;
 

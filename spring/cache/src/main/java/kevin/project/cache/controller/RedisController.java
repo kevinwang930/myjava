@@ -1,7 +1,7 @@
-package kevin.project.redis.controller;
+package kevin.project.cache.controller;
 
-import kevin.project.redis.service.JedisService;
-import kevin.project.redis.service.LettuceCacheService;
+import kevin.project.cache.service.JedisService;
+import kevin.project.cache.service.LettuceCacheService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 @RestController
 @RequestMapping("/redis")

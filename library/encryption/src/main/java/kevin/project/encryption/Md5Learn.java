@@ -27,12 +27,12 @@ public class Md5Learn {
 
     public static void main(String[] args) {
 
-        Long standardMatchId = 3805819L;
-        String dataSourceCode = "F01";
-        String standardCategoryId = "19";
+        Long standardMatchId = 4050017L;
+        String dataSourceCode = "AO";
+        String standardCategoryId = "341";
         String content = "Ronghe:StandardCategoryMarketData:" + standardMatchId + "_" + dataSourceCode + "_" +
                 standardCategoryId;
-        digest(content);
+        // digest(content);
         hutuDigest(content);
 
     }
