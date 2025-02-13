@@ -1,7 +1,7 @@
 package kevin.project.cache.controller;
 
 import kevin.project.cache.bean.Worker;
-import kevin.project.cache.mapper.WorkerMapper;
+import kevin.project.cache.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +15,12 @@ import java.util.List;
 public class JdbcController {
 
     @Autowired
-    private WorkerMapper workerMapper;
+    private WorkerService workerService;
 
     @GetMapping("/list")
     @ResponseBody
     public List<Worker> list() {
-        return workerMapper.getAllWorkers();
+        return workerService.getAllWorkers();
     }
 
 }

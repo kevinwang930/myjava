@@ -30,7 +30,6 @@
         <module>syntax</module>
         <module>myModule</module>
         <module>littleJava</module>
-        <module>library/mySpring</module>
         <module>myFP</module>
         <module>algorithm</module>
         <module>myLog</module>

@@ -15,6 +15,14 @@ public class StringLearn {
         System.out.println(String.format("123 {%s}", Integer.parseInt(a)));
     }
 
+    public static void eqaulsLearn() {
+        String a = "1234567890";
+        String b = "1234567890";
+        String c = new String("1234567890");
+        System.out.println(a == b);
+        System.out.println(a == c);
+    }
+
     public static void base64Learn() {
         byte[] bytes = new byte[16];
         Base64.Encoder encoder = Base64.getUrlEncoder();
@@ -52,7 +60,8 @@ public class StringLearn {
 
     public static void main(String[] args) {
 //        replaceLearn();
-        formatLearn();
+//        formatLearn();
+        eqaulsLearn();
         /*base64Learn();
         hexToBase64("420f8a835bb48ebeb845b0a26c5aa608");
         hexToBase64("e0062ad0842b6a43a79d02cdd156d589");

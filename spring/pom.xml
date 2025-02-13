@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>cache</module>
+        <module>boot</module>
     </modules>
 
     <properties>
