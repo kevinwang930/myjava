@@ -25,15 +25,21 @@ public class Md5Learn {
         System.out.println(DigestUtil.md5Hex(content));
     }
 
+    public static void scoreMd5(Long matchId) {
+        System.out.println(DigestUtil.md5Hex("FOOTBALL_STANDARD_MATCH_SCORES:"+ matchId.toString()));
+    }
+
     public static void main(String[] args) {
 
-        Long standardMatchId = 4050017L;
+        Long standardMatchId = 3957409L;
+        System.out.println(standardMatchId.toString());
         String dataSourceCode = "AO";
         String standardCategoryId = "341";
         String content = "Ronghe:StandardCategoryMarketData:" + standardMatchId + "_" + dataSourceCode + "_" +
                 standardCategoryId;
         // digest(content);
-        hutuDigest(content);
+//        hutuDigest(content);
+        scoreMd5(standardMatchId);
 
     }
 
