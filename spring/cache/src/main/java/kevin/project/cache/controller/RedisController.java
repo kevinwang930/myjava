@@ -38,8 +38,14 @@ public class RedisController {
          redisService.getList("test");
     }
 
-    @GetMapping("/cache")
-    public List<Integer> cache() {
-        return lettuceCacheService.getOrCreate();
+    @GetMapping("/test-script")
+    public Long cache() {
+        return lettuceCacheService.testScript();
+    }
+
+    @GetMapping("/test-string")
+    public Long testString() {
+         lettuceCacheService.testString("test");
+         return 1L;
     }
 }

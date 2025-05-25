@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -27,68 +28,27 @@ public class LettuceCacheService {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    private static String getCacheScript;
 
+    private DefaultRedisScript<Long> defaultScript = new DefaultRedisScript<>(
 
-    static  {
-        try (InputStream is = LettuceCacheService.class.getResourceAsStream("/lua/get_cache.lua")) {
-            Objects.requireNonNull(is);
-            getCacheScript = IOUtils.toString(is, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException("get lua script failed", e);
-        }
+             "local current = redis.call('get', KEYS[1])\n"
+            + "if current and tonumber(current) >= tonumber(ARGV[1]) then\n"
+            + "    return tonumber(current)\n"
+            + "else\n"
+            + "    redis.call('set', KEYS[1], ARGV[1])\n"
+            + "    redis.call('expire', KEYS[1], tonumber(ARGV[2]))\n"
+            + "    return tonumber(ARGV[1])\n"
+            + "end",
+            Long.class);
+
+    public Long testScript() {
+        Long timestamp = System.currentTimeMillis();
+        System.out.println(timestamp);
+        return redisTemplate.execute(defaultScript, List.of("12345"),  System.currentTimeMillis(),
+                64700000000L);
     }
 
-
-    public List<Integer> get() {
-
-        RedisScript<List> redisScript = new DefaultRedisScript<>(getCacheScript,List.class);
-        List<Object> result = redisTemplate.execute(redisScript, List.of("cset", "ccnt"));
-        if (result == null || result .size() <=1) {
-            throw new RuntimeException("get cache failed");
-        }
-        Long status = (Long) result.get(0);
-        if (status == 1) {
-            return (List<Integer>) result.get(1);
-        } else {
-            throw new RuntimeException("no cache");
-        }
+    public void testString(String content) {
+        redisTemplate.opsForValue().set("test", content);
     }
-
-    public List<Integer> getOrCreate() {
-        try {
-            return get();
-        } catch (RuntimeException e) {
-            log.error("no cache to get",e);
-            create(List.of(1,2,3,4,5));
-            return get();
-        }
-    }
-
-    public void update(Integer value) {
-        String script = "if redis.call('exists', KEYS[2]) == 1 " +
-                "then redis.call('incr', KEYS[2]); redis.call('sadd', KEYS[1], ARGV[1]) " + "else return nil " + "end";
-        RedisScript<List<Integer>> redisScript = new DefaultRedisScript<>(script);
-        redisTemplate.execute(redisScript, List.of("cset", "ccnt"), value);
-    }
-
-
-    public void create(List<Integer> cacheContent) {
-        String createCacheScript;
-        try (InputStream is = LettuceCacheService.class.getResourceAsStream("/lua/create_cache.lua")) {
-            Objects.requireNonNull(is);
-            createCacheScript = IOUtils.toString(is, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException("get lua script failed", e);
-        }
-
-        RedisScript<Long> redisScript = new DefaultRedisScript<>(createCacheScript,Long.class);
-        Long result = redisTemplate.execute(redisScript, List.of("cset", "ccnt"), cacheContent.toArray());
-
-        if (result != 1) {
-            throw new RuntimeException("create cache failed with status: " + result);
-        }
-    }
-
-
 }

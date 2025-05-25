@@ -7,9 +7,8 @@ import com.alibaba.fastjson2.JSONWriter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import redis.clients.jedis.Jedis;
+import lombok.val;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,9 +41,21 @@ public class FastJsonLearn {
         String userString = JSON.toJSONString(user, JSONWriter.Feature.WriteClassName);
         System.out.println(userString);
         JSONObject jsonObject = JSON.parseObject(userString);
+        User parsedUser = jsonObject.to(User.class);
+        System.out.println(parsedUser);
         System.out.println(jsonObject.get("name"));
-        User javaObject = jsonObject.toJavaObject(User.class);
-        System.out.println(javaObject.getName());
+        System.out.println(parsedUser.getName());
+    }
+
+    public void jsonStringLearn() {
+        val jsonString = JSON.toJSONString("test");
+        System.out.println(jsonString);
+        System.out.println(jsonString.equals("test"));
+    }
+
+    public void jsonLongLearn() {
+        val jsonString = JSON.toJSONString(123L);
+        System.out.println(jsonString);
     }
 
     public void jsonReaderLearn() {
@@ -54,11 +65,14 @@ public class FastJsonLearn {
         Object result = JSON.parseObject(userString, Object.class, JSONReader.Feature.SupportAutoType);
         System.out.println(result);
         System.out.printf(result.getClass().getName());
+        System.out.println();
     }
 
     public static void main(String[] args) {
         FastJsonLearn fastJsonLearn = new FastJsonLearn();
-        fastJsonLearn.jsonObjectLearn();
-        fastJsonLearn.jsonReaderLearn();
+//        fastJsonLearn.jsonObjectLearn();
+//        fastJsonLearn.jsonReaderLearn();
+//        fastJsonLearn.jsonLongLearn();
+        fastJsonLearn.jsonStringLearn();
     }
 }

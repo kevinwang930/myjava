@@ -7,14 +7,15 @@
         <groupId>kevin.project</groupId>
         <artifactId>myJava</artifactId>
         <version>1.0.1</version>
+        <relativePath>../../pom.xml</relativePath>
+
     </parent>
 
-    <artifactId>spring</artifactId>
+    <artifactId>maven</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>cache</module>
-        <module>boot</module>
-        <module>rocketmq</module>
+        <module>depA</module>
+        <module>mainP</module>
     </modules>
 
     <properties>

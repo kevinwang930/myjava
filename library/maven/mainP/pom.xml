@@ -5,17 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>kevin.project</groupId>
-        <artifactId>myJava</artifactId>
+        <artifactId>maven</artifactId>
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>spring</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>cache</module>
-        <module>boot</module>
-        <module>rocketmq</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <artifactId>mainP</artifactId>
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>

@@ -2,6 +2,7 @@ package kevin.project.thread;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class FutureLearn {
 
@@ -36,8 +37,9 @@ public class FutureLearn {
             System.out.println("future 2 finish time: " + System.currentTimeMillis());
         });
 
-        future.get();
-        future2.get();
+
+        CompletableFuture.allOf(future, future2)
+                         .join();
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {

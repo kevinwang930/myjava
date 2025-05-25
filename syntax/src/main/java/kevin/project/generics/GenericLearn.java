@@ -5,10 +5,7 @@ import com.alibaba.fastjson2.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.util.List;
 
 /**
@@ -33,6 +30,7 @@ public class GenericLearn {
     @Data
     static class GenericTest<T> {
         T value;
+        List<String> stringList;
     }
 
     @AllArgsConstructor
@@ -80,11 +78,22 @@ public class GenericLearn {
         System.out.println(a1.getString("name"));
     }
 
+    static void genericInfoLeanr() {
+        Field[] fields = GenericTest.class.getDeclaredFields();
+        for (Field field : fields) {
+            Type genericType = field.getGenericType();
+            System.out.println(genericType);
+            Class<?> type = field.getType();
+            System.out.println(type);
+        }
+    }
+
     public static void main(String[] args) {
         MyService proxy = createProxy(MyService.class);
         Method method = proxy.getClass().getInterfaces()[0].getMethods()[0];
         Type returnType = method.getGenericReturnType();
         System.out.println(returnType);
         genericSerialization();
+        genericInfoLeanr();
     }
 }
