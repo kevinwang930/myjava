@@ -4,22 +4,26 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.JSONReader;
 import com.alibaba.fastjson2.JSONWriter;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.val;
+import lombok.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 class User {
     String name;
     String value;
     Long longValue = 3L;
+    String test;
+    transient String transientTest = "default";
+
+    public void setTest1(String test1) {
+        this.test = test1;
+    }
 
     List<HashMap<Long, Integer>> mp;
 
@@ -35,9 +39,9 @@ class User {
 
 public class FastJsonLearn {
 
-
     public void jsonObjectLearn() {
         User user = new User("kevin", "test");
+        user.setTest1("test123");
         String userString = JSON.toJSONString(user, JSONWriter.Feature.WriteClassName);
         System.out.println(userString);
         JSONObject jsonObject = JSON.parseObject(userString);
@@ -58,6 +62,16 @@ public class FastJsonLearn {
         System.out.println(jsonString);
     }
 
+    public void jsonSetterLearn() {
+        User user = new User("kevin", "test");
+        user.setTest1("test123");
+        String userString = JSON.toJSONString(user, JSONWriter.Feature.WriteClassName);
+        System.out.println(userString);
+        User parsedUser = JSON.parseObject(userString,User.class);
+        System.out.println(parsedUser);
+        System.out.println(parsedUser.getTest());
+    }
+
     public void jsonReaderLearn() {
         User user = new User("kevin", "test");
         String userString = JSON.toJSONString(user, JSONWriter.Feature.WriteClassName);
@@ -68,11 +82,23 @@ public class FastJsonLearn {
         System.out.println();
     }
 
+    public static void transientLearn() {
+        val user = new User("kevin", "test");
+        user.setTransientTest("test");
+        val userString = JSON.toJSONString(user, JSONWriter.Feature.WriteClassName);
+        System.out.println(userString);
+        val parsedUser = JSON.parseObject(userString,User.class);
+        System.out.println(parsedUser);
+        System.out.println(parsedUser.getTransientTest());
+    }
+
     public static void main(String[] args) {
         FastJsonLearn fastJsonLearn = new FastJsonLearn();
 //        fastJsonLearn.jsonObjectLearn();
 //        fastJsonLearn.jsonReaderLearn();
 //        fastJsonLearn.jsonLongLearn();
-        fastJsonLearn.jsonStringLearn();
+//        fastJsonLearn.jsonStringLearn();
+        fastJsonLearn.jsonSetterLearn();
+        transientLearn();
     }
 }

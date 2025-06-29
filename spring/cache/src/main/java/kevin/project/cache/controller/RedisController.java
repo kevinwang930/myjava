@@ -2,6 +2,7 @@ package kevin.project.cache.controller;
 
 import kevin.project.cache.service.JedisService;
 import kevin.project.cache.service.LettuceCacheService;
+import kevin.project.cache.service.RedisStreamService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class RedisController {
     @Autowired
     private LettuceCacheService lettuceCacheService;
 
+    @Autowired
+    private RedisStreamService redisStreamService;
+
     @GetMapping("/keys")
     @ResponseBody
     public Set<String> hello() {
@@ -35,7 +39,7 @@ public class RedisController {
     @GetMapping("/list")
     @ResponseBody
     public void list() {
-         redisService.getList("test");
+        redisService.getList("test");
     }
 
     @GetMapping("/test-script")
@@ -43,9 +47,20 @@ public class RedisController {
         return lettuceCacheService.testScript();
     }
 
+    @GetMapping("/test-small")
+    public Boolean small() {
+        return lettuceCacheService.testSmall();
+    }
+
+    @GetMapping("/test-stream")
+    public Boolean stream() {
+        redisStreamService.addNumberToStream(1);
+        return true;
+    }
+
     @GetMapping("/test-string")
     public Long testString() {
-         lettuceCacheService.testString("test");
-         return 1L;
+        lettuceCacheService.testString("test");
+        return 1L;
     }
 }

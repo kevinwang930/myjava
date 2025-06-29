@@ -1,7 +1,6 @@
 package kevin.project.socket.impl.netty.protobuf;
 
 import io.netty.channel.ChannelHandlerContext;
-import kevin.project.socket.impl.netty.NettyMessageHandler;
 import kevin.project.socket.impl.netty.NettyServerContext;
 import kevin.project.socket.impl.proto.Simple;
 

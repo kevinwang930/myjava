@@ -42,12 +42,27 @@ public class FutureLearn {
                          .join();
     }
 
+    public static void futureExceptionLearn() {
+        CompletableFuture<Void> exception1 = CompletableFuture.runAsync(() -> {
+            throw new RuntimeException("exception1");
+        });
+        CompletableFuture<Void> exception2 = CompletableFuture.runAsync(() -> {
+            throw new RuntimeException("exception2");
+        });
+        CompletableFuture<Void> exception3 = CompletableFuture.runAsync(() -> {
+            throw new RuntimeException("exception3");
+        });
+        CompletableFuture.allOf(exception1, exception2, exception3).join();
+        System.out.println("finished all exception");
+    }
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         // Create a new CompletableFuture
 
 
-        FutureLearn futureLearn = new FutureLearn();
-        futureLearn.completableFutureLearn();
+//        FutureLearn futureLearn = new FutureLearn();
+//        futureLearn.completableFutureLearn();
+        futureExceptionLearn();
+        System.out.println("main finished");
     }
 
 

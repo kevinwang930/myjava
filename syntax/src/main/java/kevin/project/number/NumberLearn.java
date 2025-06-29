@@ -24,6 +24,12 @@ public class NumberLearn {
 
     }
 
+    public static void longIntegerCastLearn() {
+        long a = 100000000L;
+        int b = (int)a;
+        System.out.println(b);
+    }
+
     public static void xandLearn() {
         System.out.println(1 & 3);
     }
@@ -31,5 +37,6 @@ public class NumberLearn {
     public static void main(String[] args) {
         xandLearn();
         integerCompare();
+        longIntegerCastLearn();
     }
 }

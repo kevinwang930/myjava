@@ -32,7 +32,6 @@
         <module>syntax</module>
         <module>myModule</module>
         <module>littleJava</module>
-        <module>myFP</module>
         <module>algorithm</module>
         <module>myLog</module>
         <module>myNet</module>
@@ -72,8 +71,10 @@
         <module>library/encryption</module>
         <module>library/mybatis-plus</module>
         <module>library/db_common</module>
+        <module>library/socket</module>
         <module>spring</module>
         <module>library/maven</module>
+        <module>syntax8</module>
     </modules>
 
 
@@ -237,6 +238,15 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.5.0</version>
+        </dependency>
+
+
 
 
 

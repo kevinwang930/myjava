@@ -9,10 +9,12 @@
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>myFP</artifactId>
+    <artifactId>syntax8</artifactId>
 
     <properties>
-
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

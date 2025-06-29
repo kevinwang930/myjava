@@ -41,6 +41,17 @@ public class LettuceCacheService {
             + "end",
             Long.class);
 
+    private  static final String SCRIPT_SMALL =
+            "local current = redis.call('get', KEYS[1]) " +
+                    "if current and tonumber(current) <= tonumber(ARGV[1]) then " +
+                    "    return '0' " +
+                    "else " +
+                    "    redis.call('set', KEYS[1], ARGV[1], 'ex', ARGV[2]) " +
+                    "    return '1' " +
+                    "end";
+
+
+
     public Long testScript() {
         Long timestamp = System.currentTimeMillis();
         System.out.println(timestamp);
@@ -50,5 +61,15 @@ public class LettuceCacheService {
 
     public void testString(String content) {
         redisTemplate.opsForValue().set("test", content);
+    }
+
+    public boolean testSmall() {
+        DefaultRedisScript<String> defaultScript = new DefaultRedisScript<>(SCRIPT_SMALL, String.class);
+        Long tp = -1L;
+        Integer expireSeconds = 14500;
+        String result = redisTemplate.execute(defaultScript, RedisSerializer.string(),RedisSerializer.string(),
+                List.of("dsph:123_456_789"), String.valueOf(tp),
+                String.valueOf(expireSeconds));
+        return Integer.parseInt(result) == 1;
     }
 }

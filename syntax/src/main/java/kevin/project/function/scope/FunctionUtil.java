@@ -1,4 +1,4 @@
-package kevin.project.scope;
+package kevin.project.function.scope;
 
 import java.util.function.Consumer;
 

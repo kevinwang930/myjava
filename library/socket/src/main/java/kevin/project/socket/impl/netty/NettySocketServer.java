@@ -7,10 +7,13 @@ import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import kevin.project.socket.impl.EchoMessageHandler;
 import kevin.project.socket.impl.MessageHandler;
+
+import javax.sound.sampled.Line;
 
 
 /**
@@ -54,6 +57,7 @@ public class NettySocketServer {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(
+                                    new LineBasedFrameDecoder(1024),
                                     new StringDecoder(),
                                     new StringEncoder(),
                                     new ServerHandler(context, messageHandler)
@@ -102,7 +106,7 @@ public class NettySocketServer {
 
         @Override
         protected void messageReceived(ChannelHandlerContext ctx, String msg) throws Exception {
-            System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
+//            System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
             messageHandler.onMessage(ctx, msg, context);
         }
     }
