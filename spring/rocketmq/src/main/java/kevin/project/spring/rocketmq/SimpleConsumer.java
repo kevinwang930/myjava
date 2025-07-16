@@ -12,5 +12,6 @@ public class SimpleConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
         log.info("message received: {}", message);
+        throw new RuntimeException("simple consumer" + message);
     }
 }

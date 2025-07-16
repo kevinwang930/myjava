@@ -8,5 +8,5 @@ import java.io.IOException;
 import java.nio.channels.SocketChannel;
 
 public interface NettyMessageHandler {
-    void onMessage(ChannelHandlerContext handlerContext, String message, NettyServerContext context) throws IOException;
+    void onMessage(ChannelHandlerContext handlerContext, String message) throws IOException;
 }

@@ -54,7 +54,7 @@ public class NettyWebSocketServer {
     public static class WebSocketFrameHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
         @Override
-        protected void messageReceived(ChannelHandlerContext ctx, WebSocketFrame msg) throws Exception {
+        protected void channelRead0(ChannelHandlerContext ctx, WebSocketFrame msg) throws Exception {
             if (msg instanceof TextWebSocketFrame) {
                 String request = ((TextWebSocketFrame) msg).text();
                 System.out.println("Received: " + request);
@@ -71,6 +71,3 @@ public class NettyWebSocketServer {
         new NettyWebSocketServer(port).run();
     }
 }
-
-
-

@@ -8,6 +8,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
@@ -24,13 +25,16 @@ public class NettyClient {
 
     private Channel channel;
 
-    private final EventLoopGroup group = new NioEventLoopGroup(2);
+    private final EventLoopGroup group;
+
+    private static final AtomicLong total = new AtomicLong(0);
 
     private final StatisticHandler statisticHandler = new StatisticHandler();
 
     public NettyClient(String host, int port) {
         this.host = host;
         this.port = port;
+        this.group = new NioEventLoopGroup(4);
     }
 
     public void start() throws Exception {
@@ -42,10 +46,7 @@ public class NettyClient {
                          @Override
                          protected void initChannel(SocketChannel ch) {
                              ChannelPipeline p = ch.pipeline();
-                             p.addLast(
-                                     new LineBasedFrameDecoder(1024),
-                                     new StringDecoder(),
-                                     new StringEncoder(),
+                             p.addLast(new LineBasedFrameDecoder(1024), new StringDecoder(), new StringEncoder(),
                                      statisticHandler);
 
                          }
@@ -67,49 +68,55 @@ public class NettyClient {
         }
     }
 
-    public void shutdown() {
-        group.shutdownGracefully(0L,10L, TimeUnit.SECONDS);
-        log.info("Client shutdown. received {} messages", statisticHandler.counter);
+    public void shutdown() throws InterruptedException {
+        Thread.sleep(1000);
+        group.shutdownGracefully(0L, 10L, TimeUnit.SECONDS);
+        long cc = statisticHandler.counter.get();
+        long ct = total.addAndGet(statisticHandler.counter.get());
+        log.info("Client shutdown. received {}，total {}", cc , ct);
     }
 
     private static class StatisticHandler extends SimpleChannelInboundHandler<String> {
-        public long counter = 0L;
+        public AtomicLong counter = new AtomicLong(0);
+
 
         @Override
-        protected void messageReceived(ChannelHandlerContext ctx, String msg) throws Exception {
-//            log.info("Received message: {}", msg);
-            counter++;
+        protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+            counter.getAndIncrement();
         }
     }
 
-    public static void test()  {
-        NettyClient nettyClient = new NettyClient("127.0.0.1", 8989);
+    public static void test() {
+        NettyClient nettyClient = new NettyClient("192.168.1.107", 8989);
         try {
             nettyClient.start();
             long start = System.currentTimeMillis();
-            while (System.currentTimeMillis() - start < 2000) {
-                nettyClient.sendMessage("Hello World \n");
+            while (System.currentTimeMillis() - start < 1000) {
+                nettyClient.sendMessage("Hello \n");
             }
         } catch (Exception e) {
             log.error("Failed to start client", e);
         } finally {
-            nettyClient.shutdown();
+            try {
+
+                nettyClient.shutdown();
+            } catch (Exception e) {
+                log.error("Failed to shutdown client", e);
+            }
         }
     }
 
 
+    @SneakyThrows
     public static void main(String[] args) throws InterruptedException {
-        test();
         ExecutorService executorService = Executors.newFixedThreadPool(8);
         executorService.submit(NettyClient::test);
         executorService.submit(NettyClient::test);
         executorService.submit(NettyClient::test);
         executorService.submit(NettyClient::test);
-        executorService.submit(NettyClient::test);
-        executorService.submit(NettyClient::test);
-        executorService.submit(NettyClient::test);
-        executorService.submit(NettyClient::test);
         executorService.shutdown();
-        executorService.awaitTermination(10, TimeUnit.SECONDS);
+        executorService.awaitTermination(15, TimeUnit.SECONDS);
+                test();
+        log.info("total: {}", total);
     }
 }

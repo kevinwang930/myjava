@@ -22,6 +22,14 @@ public class NumberLearn {
         int c = 100000;
         System.out.println(a == c);
 
+        Integer d = null;
+        try {
+
+            System.out.println(d == c);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     public static void longIntegerCastLearn() {

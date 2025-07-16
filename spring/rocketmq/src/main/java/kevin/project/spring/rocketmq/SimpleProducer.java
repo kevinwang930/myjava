@@ -19,4 +19,12 @@ public class SimpleProducer {
         rocketMQTemplate.send("TOPIC_TEST",message);
         return "success";
     }
+
+    public  String produce(String message) {
+
+        Message<String> message1 = MessageBuilder.withPayload(message)
+                                                .build();
+        rocketMQTemplate.send("TOPIC_TEST",message1);
+        return "success";
+    }
 }

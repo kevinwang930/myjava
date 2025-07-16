@@ -60,7 +60,7 @@ public class NettySocketServer {
                                     new LineBasedFrameDecoder(1024),
                                     new StringDecoder(),
                                     new StringEncoder(),
-                                    new ServerHandler(context, messageHandler)
+                                    new ServerHandler()
                             );
                         }
                     })
@@ -76,38 +76,13 @@ public class NettySocketServer {
         }
     }
 
-    private class ServerHandler extends SimpleChannelInboundHandler<String> {
-        private final NettyServerContext context;
-        private final NettyMessageHandler messageHandler;
-
-        public ServerHandler(NettyServerContext context, NettyMessageHandler messageHandler) {
-            this.context = context;
-            this.messageHandler = messageHandler;
-        }
-
-        @Override
-        public void channelActive(ChannelHandlerContext ctx) {
-//            System.out.println("New client connected: " + ctx.channel().remoteAddress());
-            context.addClient(ctx.channel());
-        }
+    private static class ServerHandler extends SimpleChannelInboundHandler<String> {
 
 
         @Override
-        public void channelInactive(ChannelHandlerContext ctx) {
-            System.out.println("Client disconnected: " + ctx.channel().remoteAddress());
-            context.removeClient(ctx.channel());
-        }
-
-        @Override
-        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-            cause.printStackTrace();
-            ctx.close();
-        }
-
-        @Override
-        protected void messageReceived(ChannelHandlerContext ctx, String msg) throws Exception {
-//            System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
-            messageHandler.onMessage(ctx, msg, context);
+        protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+            String response = "received: " + msg + "\n";
+            ctx.writeAndFlush(response);
         }
     }
 }

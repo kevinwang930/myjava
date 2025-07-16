@@ -105,7 +105,7 @@ public class NettyProtobufSocketServer {
         }
 
         @Override
-        protected void messageReceived(ChannelHandlerContext ctx, Simple.Request msg) throws Exception {
+        protected void channelRead0(ChannelHandlerContext ctx, Simple.Request msg) throws Exception {
             System.out.println("Received from " + ctx.channel().remoteAddress() + ": " + msg);
             messageHandler.onMessage(ctx, msg, context);
         }

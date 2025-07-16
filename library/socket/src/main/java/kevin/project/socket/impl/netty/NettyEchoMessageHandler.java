@@ -17,7 +17,7 @@ import java.nio.channels.SocketChannel;
  **/
 public class NettyEchoMessageHandler implements NettyMessageHandler {
     @Override
-    public void onMessage(ChannelHandlerContext ctx, String message, NettyServerContext context) throws IOException {
+    public void onMessage(ChannelHandlerContext ctx, String message) throws IOException {
         String response = "received: " + message + "\n";
         ctx.writeAndFlush(response);
 
