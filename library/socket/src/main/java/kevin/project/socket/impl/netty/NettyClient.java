@@ -2,7 +2,7 @@ package kevin.project.socket.impl.netty;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
-import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.nio.NioIoHandler;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
@@ -11,9 +11,6 @@ import io.netty.handler.codec.string.StringEncoder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -25,7 +22,7 @@ public class NettyClient {
 
     private Channel channel;
 
-    private final EventLoopGroup group;
+    private final MultiThreadIoEventLoopGroup group;
 
     private static final AtomicLong total = new AtomicLong(0);
 
@@ -34,7 +31,8 @@ public class NettyClient {
     public NettyClient(String host, int port) {
         this.host = host;
         this.port = port;
-        this.group = new NioEventLoopGroup(4);
+        this.group = new MultiThreadIoEventLoopGroup(NioIoHandler.newFactory());
+        //        this.group = new NioEventLoopGroup(4);
     }
 
     public void start() throws Exception {
@@ -73,7 +71,7 @@ public class NettyClient {
         group.shutdownGracefully(0L, 10L, TimeUnit.SECONDS);
         long cc = statisticHandler.counter.get();
         long ct = total.addAndGet(statisticHandler.counter.get());
-        log.info("Client shutdown. received {}，total {}", cc , ct);
+        log.info("Client shutdown. received {}，total {}", cc, ct);
     }
 
     private static class StatisticHandler extends SimpleChannelInboundHandler<String> {
@@ -87,7 +85,7 @@ public class NettyClient {
     }
 
     public static void test() {
-        NettyClient nettyClient = new NettyClient("192.168.1.107", 8989);
+        NettyClient nettyClient = new NettyClient("127.0.0.1", 8989);
         try {
             nettyClient.start();
             long start = System.currentTimeMillis();
@@ -109,14 +107,16 @@ public class NettyClient {
 
     @SneakyThrows
     public static void main(String[] args) throws InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(8);
-        executorService.submit(NettyClient::test);
-        executorService.submit(NettyClient::test);
-        executorService.submit(NettyClient::test);
-        executorService.submit(NettyClient::test);
-        executorService.shutdown();
-        executorService.awaitTermination(15, TimeUnit.SECONDS);
-                test();
-        log.info("total: {}", total);
+//        ExecutorService executorService = Executors.newFixedThreadPool(8);
+//        executorService.submit(NettyClient::test);
+////        executorService.submit(NettyClient::test);
+////        executorService.submit(NettyClient::test);
+////        executorService.submit(NettyClient::test);
+//        executorService.shutdown();
+//        executorService.awaitTermination(15, TimeUnit.SECONDS);
+//
+//        log.info("total: {}", total);
+
+        NettyClient.test();
     }
 }

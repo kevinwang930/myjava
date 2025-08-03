@@ -63,4 +63,16 @@ public class RedisController {
         lettuceCacheService.testString("test");
         return 1L;
     }
+
+    @GetMapping("/test-pipeline")
+    public Long testPipeline() {
+        lettuceCacheService.testSession();
+        return 1L;
+    }
+
+    @GetMapping("/test-transaction")
+    public Long testTransaction() {
+        lettuceCacheService.testTransaction();
+        return 1L;
+    }
 }

@@ -7,8 +7,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Arrays;
 
 public class ClassLearn {
@@ -21,7 +19,7 @@ public class ClassLearn {
                                       .getDeclaredMethod("echo", Object.class);
         echo.setAccessible(true);
         echo.invoke(stringInnerClass, stringInnerClass);
-        
+
 
         Class<?> clazz = stringInnerClass.getClass();
         System.out.println(Arrays.asList(clazz.getAnnotations()));

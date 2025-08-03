@@ -1,9 +1,13 @@
 package kevin.project.cache.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -14,6 +18,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @version 1.0
@@ -71,5 +76,42 @@ public class LettuceCacheService {
                 List.of("dsph:123_456_789"), String.valueOf(tp),
                 String.valueOf(expireSeconds));
         return Integer.parseInt(result) == 1;
+    }
+
+    public void testSession() {
+        redisTemplate.executePipelined(new SessionCallback<Object>() {
+
+            @Override
+            public  Object execute(RedisOperations operations) throws DataAccessException {
+                operations.opsForValue().set("test1","test2");
+                operations.opsForSet().add("set1",1L,2L,3L,123456987687L);
+                return null;
+            }
+        });
+    }
+
+    public void testTransaction() {
+        List<Object> objects = redisTemplate.executePipelined(new SessionCallback<Object>() {
+
+            @Override
+            public Object execute(RedisOperations operations) throws DataAccessException {
+                operations.multi();
+                operations.opsForValue()
+                          .set("test1", "test2");
+                operations.opsForSet()
+                          .add("set1", 1L, 2L, 3L, 123456987687L);
+                operations.opsForSet()
+                          .members("set1");
+                operations.exec();
+                return null;
+            }
+        });
+        if (CollectionUtils.isNotEmpty(objects)) {
+            objects.forEach(o -> log.info("{}", o));
+            List<Object> result = (List<Object>) objects.get(0);
+
+            Set<Long> members = (Set<Long>) result.get(2);
+            members.forEach(System.out::println);
+        }
     }
 }

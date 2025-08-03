@@ -2,18 +2,12 @@ package kevin.project.socket.impl.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
-import io.netty.channel.epoll.Epoll;
-import io.netty.channel.epoll.EpollEventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.nio.NioIoHandler;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-import kevin.project.socket.impl.EchoMessageHandler;
-import kevin.project.socket.impl.MessageHandler;
-
-import javax.sound.sampled.Line;
 
 
 /**
@@ -25,7 +19,9 @@ import javax.sound.sampled.Line;
 public class NettySocketServer {
 
     private final int port;
+
     private final NettyServerContext context;
+
     private final NettyMessageHandler messageHandler;
 
     public NettySocketServer(int port) {
@@ -42,34 +38,31 @@ public class NettySocketServer {
     public void start() throws Exception {
         EventLoopGroup bossGroup;
         EventLoopGroup workerGroup;
-        if (Epoll.isAvailable()) {
-            bossGroup = new EpollEventLoopGroup(1);
-            workerGroup = new EpollEventLoopGroup();
-        } else {
-            bossGroup = new NioEventLoopGroup(1);
-            workerGroup = new NioEventLoopGroup();
-        }
+
+        bossGroup = new MultiThreadIoEventLoopGroup(1,NioIoHandler.newFactory());
+        workerGroup = new MultiThreadIoEventLoopGroup(NioIoHandler.newFactory());
+
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        public void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(
-                                    new LineBasedFrameDecoder(1024),
-                                    new StringDecoder(),
-                                    new StringEncoder(),
-                                    new ServerHandler()
-                            );
-                        }
-                    })
-                    .option(ChannelOption.SO_BACKLOG, 128)
-                    .childOption(ChannelOption.SO_KEEPALIVE, false);
+             .channel(NioServerSocketChannel.class)
+             .childHandler(new ChannelInitializer<SocketChannel>() {
+                 @Override
+                 public void initChannel(SocketChannel ch) throws Exception {
+                     ch.pipeline()
+                       .addLast(new LineBasedFrameDecoder(1024), new StringDecoder(), new StringEncoder(),
+                               new ServerHandler());
+                 }
+             })
+             .option(ChannelOption.SO_BACKLOG, 128)
+             .childOption(ChannelOption.SO_KEEPALIVE, false);
 
-            ChannelFuture f = b.bind(port).sync();
+            ChannelFuture f = b.bind(port)
+                               .sync();
             System.out.println("Server started on port " + port);
-            f.channel().closeFuture().sync();
+            f.channel()
+             .closeFuture()
+             .sync();
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
