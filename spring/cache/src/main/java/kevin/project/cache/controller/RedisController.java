@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -64,15 +63,15 @@ public class RedisController {
         return 1L;
     }
 
-    @GetMapping("/test-pipeline")
-    public Long testPipeline() {
-        lettuceCacheService.testSession();
-        return 1L;
-    }
-
     @GetMapping("/test-transaction")
     public Long testTransaction() {
         lettuceCacheService.testTransaction();
+        return 1L;
+    }
+
+    @GetMapping("/test-pipeline")
+    public Long testPipeline() {
+        lettuceCacheService.testPipeline();
         return 1L;
     }
 }

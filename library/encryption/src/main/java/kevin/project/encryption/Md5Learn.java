@@ -44,4 +44,11 @@ public class Md5Learn {
     }
 
 
+    public static void marketIdMd5(Long matchId) {
+
+    }
+
+
+
+
 }
