@@ -1,4 +1,4 @@
-package kevin.project.spring.boot.config;
+package kevin.project.spring.kafka.config;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

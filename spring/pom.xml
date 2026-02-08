@@ -16,6 +16,7 @@
         <module>boot</module>
         <module>boot2</module>
         <module>rocketmq</module>
+        <module>springKafka</module>
     </modules>
 
     <properties>
