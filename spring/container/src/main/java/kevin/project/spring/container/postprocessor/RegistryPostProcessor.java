@@ -1,6 +1,6 @@
-package kevin.project.spring.boot.postprocessor;
+package kevin.project.spring.container.postprocessor;
 
-import kevin.project.spring.boot.autoconfig.NestedConfig;
+import kevin.project.spring.container.autoconfig.NestedConfig;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;

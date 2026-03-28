@@ -1,7 +1,7 @@
-package kevin.project.spring.boot.service;
+package kevin.project.spring.container.service;
 
-import kevin.project.spring.boot.annotation.NestedAnnotation;
-import kevin.project.spring.boot.autoconfig.Test;
+import kevin.project.spring.container.annotation.NestedAnnotation;
+import kevin.project.spring.container.autoconfig.Test;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -23,7 +23,7 @@ public class SimpleService implements InitializingBean, ApplicationContextAware 
     private ApplicationContext applicationContext;
 
     public String sayHello(String name) {
-        return "Hello " + name;
+        return String.format("Hello %s from host %s:%s\n", name, System.getenv("HOSTNAME"), System.getenv("SERVER_PORT"));
     }
 
     public String getProperty() {

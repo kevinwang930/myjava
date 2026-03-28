@@ -1,7 +1,6 @@
-package kevin.project.spring.boot.config;
+package kevin.project.spring.container.autoconfig;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 

@@ -85,10 +85,10 @@ public class LettuceCacheService {
     }
 
     public void testTransaction() {
-        List<Object> objects = redisTemplate.executePipelined(new SessionCallback<Object>() {
+        List<Object> resp = redisTemplate.execute(new SessionCallback<List<Object>>() {
 
             @Override
-            public Object execute(RedisOperations operations) throws DataAccessException {
+            public List<Object> execute(RedisOperations operations) throws DataAccessException {
                 operations.multi();
                 operations.opsForValue()
                           .set("test1", "test2");
@@ -96,15 +96,14 @@ public class LettuceCacheService {
                           .add("set1", 39818217L);
                 operations.opsForSet()
                           .members("set1");
-                operations.exec();
-                return null;
+                return operations.exec();
+
             }
         });
-        if (CollectionUtils.isNotEmpty(objects)) {
-            objects.forEach(o -> log.info("{}", o));
-            List<Object> result = (List<Object>) objects.get(0);
+        if (CollectionUtils.isNotEmpty(resp)) {
+            resp.forEach(o -> log.info("{}", o));
 
-            Set<Long> members = (Set<Long>) result.get(2);
+            Set<Long> members = (Set<Long>) resp.get(2);
             members.forEach(System.out::println);
         }
     }

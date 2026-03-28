@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: container-app
+  labels:
+    app: container-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: container-app
+  template:
+    metadata:
+      name: container-app
+      labels:
+        app: container-app
+    spec:
+      containers:
+        - name: spring-app
+          image: container:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+      restartPolicy: Always

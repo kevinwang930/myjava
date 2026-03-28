@@ -1,4 +1,4 @@
-package kevin.project.spring.boot.property;
+package kevin.project.spring.container.property;
 
 
 import org.springframework.beans.factory.InitializingBean;
