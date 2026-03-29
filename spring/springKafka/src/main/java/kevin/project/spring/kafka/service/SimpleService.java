@@ -17,18 +17,12 @@ import java.util.Map;
 @Slf4j
 public class SimpleService implements InitializingBean, ApplicationContextAware {
 
-    @Value("${a}")
-    private String a;
-
     private ApplicationContext applicationContext;
 
     public String sayHello(String name) {
         return "Hello " + name;
     }
 
-    public String getProperty() {
-        return a;
-    }
 
 
     @Override
